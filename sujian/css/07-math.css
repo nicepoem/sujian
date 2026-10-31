@@ -1,0 +1,139 @@
+/* sujian/css/07-math.css — 数学公式 */
+
+/* =============================================================
+ * 7. 数学公式
+ *    展示：素纸直出，无底无框
+ *    编辑：浅底圆角笺面（无边框、无蓝条）；
+ *          源码白底内嵌；预览敞开，无第二层灰盒
+ * ============================================================= */
+
+/* —— 展示态 —— */
+#write .md-math-block,
+#write .mathjax-block {
+  overflow-x: auto;
+  padding: 0.55em 0;
+  text-align: center;
+}
+
+#write .md-math-container {
+  width: 100%;
+  padding: 0.35em 0;
+  box-sizing: border-box;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0;
+  overflow: auto;
+}
+
+#write .md-math-block:hover .md-math-container {
+  background: transparent !important;
+}
+
+#write span.md-math-inline {
+  color: var(--np-ink);
+}
+
+/* —— 编辑态：统一笺面 —— */
+#write .md-rawblock-on-edit.md-math-block .md-mathblock-panel,
+#write .md-math-block.md-rawblock-on-edit .md-mathblock-panel {
+  position: relative;
+  margin: 0.35em 0 0.6em;
+  padding: 14px 16px 16px;
+  box-sizing: border-box;
+  overflow: hidden;
+  background: var(--np-th-bg) !important;
+  border: none !important;
+  border-radius: var(--np-quote-radius) !important;
+  box-shadow: none !important;
+}
+
+#write .md-rawblock-on-edit.md-math-block .md-mathblock-panel::before,
+#write .md-math-block.md-rawblock-on-edit .md-mathblock-panel::before {
+  content: none !important;
+  display: none !important;
+}
+
+#write .md-mathblock-panel .md-rawblock-control,
+#write .md-rawblock-on-edit .md-rawblock-input {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+/* 源码：白底内嵌，无描边，靠底色分层 */
+#write .md-math-block.md-rawblock-on-edit .CodeMirror,
+#write .md-rawblock-on-edit.md-math-block .CodeMirror,
+#write .md-mathblock-panel .CodeMirror {
+  overflow: hidden !important;
+  margin: 0 !important;
+  padding: 2px 0 !important;
+  border: none !important;
+  border-radius: var(--np-radius-item) !important;
+  background: var(--np-paper) !important;
+  box-shadow: none !important;
+}
+
+#write .md-math-block.md-rawblock-on-edit .CodeMirror-scroll,
+#write .md-mathblock-panel .CodeMirror-scroll {
+  border-radius: var(--np-radius-item) !important;
+  background: transparent !important;
+}
+
+#write .md-math-block.md-rawblock-on-edit .CodeMirror-gutters,
+#write .md-mathblock-panel .CodeMirror-gutters {
+  background: transparent !important;
+  border: none !important;
+}
+
+#write .md-math-block.md-rawblock-on-edit .CodeMirror-linenumber,
+#write .md-mathblock-panel .CodeMirror-linenumber {
+  color: var(--np-ink-soft) !important;
+  opacity: 0.65;
+}
+
+/* 预览：笺面内敞开，仅用细顶线与源码分开；去掉 code-tooltip 灰盒 */
+#write .md-math-block.md-rawblock-on-edit .code-tooltip,
+#write .md-mathblock-panel .code-tooltip,
+#write .md-math-block.md-rawblock-on-edit .md-mathjax-preview,
+#write .md-mathblock-panel .md-mathjax-preview,
+#write .md-mathjax-preview {
+  margin: 12px 0 0 !important;
+  padding: 14px 8px 4px !important;
+  background: transparent !important;
+  border: none !important;
+  border-top: 1px dashed var(--np-border) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  box-sizing: border-box;
+  overflow: visible;
+  text-align: center;
+}
+
+#write .md-math-block .code-tooltip .btn,
+#write .md-mathblock-panel .code-tooltip .btn {
+  border-radius: var(--np-radius-item) !important;
+}
+
+/* 弱化 \[ \] 定界符，减少与分隔线叠层 */
+#write .md-math-block.md-rawblock-on-edit {
+  --md-char-color: color-mix(in srgb, var(--np-ink-soft) 55%, transparent);
+}
+
+#write .md-math-block:hover .md-rawblock-tooltip,
+#write .md-rawblock-on-edit:hover .md-rawblock-tooltip {
+  background: var(--np-accent-soft);
+}
+
+#write .md-rawblock .md-rawblock-tooltip {
+  border-radius: var(--np-radius-item) !important;
+  background: var(--np-accent-soft) !important;
+}
+
+/* 行内公式展开 */
+#write .md-inline-math.md-expand,
+#write span.md-math-inline.md-expand {
+  border-radius: var(--np-radius-item);
+  background: var(--np-th-bg);
+  padding: 0.1em 0.25em;
+}

@@ -1,0 +1,95 @@
+/* sujian/css/layout-a4.css — A4 纸张布局覆盖（仅 sujian-a4 入口导入） */
+
+:root {
+  --np-bg: #e8ebef; /* 桌面灰底，衬托白纸 */
+  --np-paper-width: 210mm;
+  --bg-color: var(--np-bg);
+}
+
+/* 编辑区：A4 白纸，灰底一眼可见边界 */
+#write {
+  box-sizing: border-box;
+  width: var(--np-paper-width);
+  max-width: calc(100% - 48px);
+  min-height: calc(var(--np-paper-width) * 1.414);
+  margin: 28px auto 40px;
+  padding: 52px 64px 45vh;
+  background: var(--np-paper);
+  border: 1px solid #c8ced6;
+  border-radius: 2px;
+  box-shadow:
+    0 1px 2px rgba(31, 35, 40, 0.04),
+    0 8px 28px rgba(31, 35, 40, 0.1);
+}
+
+@media (max-width: 720px) {
+  #write {
+    width: 100%;
+    max-width: 100%;
+    min-height: 0;
+    margin: 0;
+    padding: 24px 20px 40vh;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+#typora-source,
+.typora-source .CodeMirror {
+  background: var(--np-bg);
+}
+
+/* HTML 导出预览：同样 A4 纸面 */
+@media screen {
+  body.typora-export {
+    background: var(--np-bg) !important;
+  }
+
+  body.typora-export .typora-export-content {
+    background: var(--np-bg) !important;
+  }
+
+  .typora-export #write,
+  .typora-export-content #write {
+    box-sizing: border-box;
+    width: var(--np-paper-width);
+    max-width: calc(100% - 48px);
+    min-height: calc(var(--np-paper-width) * 1.414);
+    margin: 40px auto;
+    padding: 52px 64px 72px;
+    background: var(--np-paper);
+    border: 1px solid #c8ced6;
+    border-radius: 2px;
+    box-shadow:
+      0 1px 2px rgba(31, 35, 40, 0.04),
+      0 8px 28px rgba(31, 35, 40, 0.1);
+  }
+}
+
+/* A4 导出 HTML 手机端：取消纸面边距，铺满屏幕 */
+@media screen and (max-width: 720px) {
+  body.typora-export,
+  .typora-export-content {
+    background: var(--np-paper) !important;
+  }
+
+  .typora-export #write,
+  .typora-export-content #write {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 20px 16px 40px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .typora-export #write,
+  .typora-export-content #write {
+    padding: 16px 12px 32px !important;
+  }
+}

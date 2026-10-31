@@ -1,0 +1,817 @@
+/* sujian/css/12-sidebar.css — 侧栏 / 文件树 / 大纲 / 查找 */
+
+/* =============================================================
+ * 12. 侧栏 / 文件树 / 大纲 / 搜索
+ * ============================================================= */
+#typora-sidebar {
+  background: var(--np-sidebar) !important;
+  border: none !important;
+  border-right: 1px solid var(--np-border) !important;
+  box-shadow: none !important;
+  font-family: "MiSans", "Segoe UI", "PingFang SC", sans-serif;
+  font-size: 13.5px;
+  color: var(--np-ink);
+}
+
+#typora-sidebar #sidebar-content,
+#typora-sidebar .sidebar-content,
+#outline-content {
+  background: var(--np-sidebar) !important;
+}
+
+/* —— Tab：文件 / 大纲 —— */
+.sidebar-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 10px 12px 8px;
+  border: none !important;
+  border-bottom: 1px solid var(--np-border) !important;
+  background: var(--np-sidebar) !important;
+  box-shadow: none !important;
+}
+
+.sidebar-tabs>li,
+#typora-sidebar .sidebar-tabs .sidebar-tab {
+  position: relative;
+  flex: 1;
+  max-width: 96px;
+  margin: 0 !important;
+  padding: 8px 6px !important;
+  border: none !important;
+  border-radius: 8px !important;
+  border-bottom: none !important;
+  text-align: center;
+  color: var(--np-ink-soft);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  background: transparent !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  transition: color 0.15s ease, background 0.12s ease;
+}
+
+.sidebar-tabs>li:hover,
+#typora-sidebar .sidebar-tabs .sidebar-tab:hover {
+  color: var(--np-accent) !important;
+  background: var(--np-accent-soft) !important;
+}
+
+.sidebar-tabs>li.active,
+#typora-sidebar .sidebar-tabs .sidebar-tab.active {
+  color: var(--np-accent) !important;
+  font-weight: 650;
+  background: var(--np-accent-soft) !important;
+  border: none !important;
+  border-bottom: none !important;
+  text-decoration: none !important;
+  box-shadow: none !important;
+}
+
+.sidebar-tabs>li.active::after,
+.sidebar-tabs>li::after,
+.sidebar-tabs>li.active::before,
+.sidebar-tabs>li::before,
+#typora-sidebar .sidebar-tabs .sidebar-tab.active::after,
+#typora-sidebar .sidebar-tabs .sidebar-tab::after {
+  display: none !important;
+  content: none !important;
+  border: none !important;
+  height: 0 !important;
+  background: none !important;
+}
+
+/* —— 文件树层级线：竖线画在 children 上；末项遮罩防止拖进展开子树 —— */
+#file-library {
+  padding: 0;
+  background: var(--np-sidebar) !important;
+}
+
+#file-library-tree,
+.use-file-tree-style #file-library-tree {
+  /* Typora 默认 display:table;min-width:100% —— 窄侧栏 + 长文件名会撑宽整表再被裁切，看起来像左移 */
+  display: block !important;
+  box-sizing: border-box;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  padding: 8px 14px 16px;
+  overflow-x: hidden !important;
+  background: var(--np-sidebar) !important;
+}
+
+.file-node-root {
+  position: relative;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+  border-left: none !important;
+}
+
+.file-tree-node,
+.file-library-node {
+  position: relative;
+  margin-bottom: 1px;
+  border-left: none !important;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+/* 去掉 mdmdt 画在 expanded 上的通栏竖线（会拖到兄弟文件） */
+.file-node-expanded {
+  margin-left: 0 !important;
+  border-left: none !important;
+}
+
+.file-node-root.file-node-expanded {
+  margin-left: 0 !important;
+  border-left: none !important;
+}
+
+/* 竖线只包住子节点区域 */
+.file-node-children {
+  position: relative;
+  margin: 0 0 2px 10px !important;
+  padding: 0 0 0 14px !important;
+  border-left: 1px solid #d0d7de !important;
+}
+
+.file-node-root>.file-node-children {
+  margin-left: 6px !important;
+  padding-left: 14px !important;
+  border-left: 1px solid #d0d7de !important;
+}
+
+/* 每个子项只画水平短线；末项靠遮罩截断父级竖线，形成 └，避免竖横双线重叠 */
+.file-node-children>.file-tree-node::before,
+.file-node-children>.file-library-node::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 14px;
+  width: 10px;
+  height: 0;
+  border: none;
+  border-top: 1px solid #d0d7de;
+  border-radius: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* 末项：用侧栏底色盖住父级竖线（含展开子树高度） */
+.file-node-children>.file-tree-node:last-child::after,
+.file-node-children>.file-library-node:last-child::after {
+  content: "";
+  position: absolute;
+  left: -16px;
+  top: 15px;
+  bottom: 0;
+  width: 5px;
+  background: var(--np-sidebar);
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* 关闭旧的 open-state 拐角伪元素，避免双线/错位 */
+.file-node-content .file-node-open-state::before,
+.file-node-content .file-node-open-state::after {
+  display: none !important;
+  content: none !important;
+}
+
+.fa-folder:before,
+.fa-folder:after,
+.fa-caret-right,
+.fa-caret-down {
+  color: #8c959f !important;
+}
+
+.file-node-content .file-node-open-state {
+  position: relative;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  float: none !important;
+  flex: 0 0 12px;
+  width: 12px;
+  min-width: 12px;
+  height: 20px;
+  padding: 0 !important;
+  margin: 0 !important;
+  color: #afb8c1 !important;
+  line-height: 20px !important;
+}
+
+.file-node-content .file-node-open-state .fa-caret-right,
+.file-node-content .file-node-open-state .fa-caret-down {
+  width: auto;
+  height: auto;
+  margin: 0 !important;
+  font-size: 11px !important;
+  line-height: 20px !important;
+  vertical-align: middle !important;
+}
+
+/* 展开/折叠只保留一个三角（放在后面，避免被盖住） */
+.file-node-expanded>.file-node-content .file-node-open-state .fa-caret-right {
+  display: none !important;
+}
+
+.file-node-collapsed>.file-node-content .file-node-open-state .fa-caret-down {
+  display: none !important;
+}
+
+.file-node-expanded>.file-node-content .file-node-open-state .fa-caret-down {
+  display: inline-block !important;
+}
+
+.file-node-collapsed>.file-node-content .file-node-open-state .fa-caret-right {
+  display: inline-block !important;
+}
+
+/* 文件节点不需要展开箭头 */
+.file-library-file-node>.file-node-content .file-node-open-state {
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+.file-node-expanded>.file-node-content,
+.file-node-root>.file-node-content {
+  margin-left: 0 !important;
+}
+
+.file-node-content {
+  position: relative;
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 6px;
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+  min-height: 28px;
+  margin: 0 !important;
+  padding: 4px 8px 4px 4px !important;
+  border: none !important;
+  border-left: none !important;
+  border-radius: 0 !important;
+  color: var(--np-ink) !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  text-decoration: none !important;
+  font-size: 13px !important;
+  line-height: 20px !important;
+  z-index: 3;
+}
+
+/* 悬停 / 选中：灰底胶囊
+ * 注意：悬停必须绑在 .file-node-content 上。
+ * 若写 .file-library-node:hover，鼠标在子文件上时祖先文件夹也会 :hover，造成多行同时高亮。 */
+.file-node-content::after {
+  content: "";
+  display: none;
+  position: absolute;
+  z-index: -1;
+  left: 0;
+  top: 1px;
+  right: 0;
+  height: calc(100% - 2px);
+  background: var(--np-accent-soft);
+  border-radius: 6px;
+}
+
+.file-node-content:hover::after,
+.file-tree-node.active > .file-node-content::after,
+.file-library-node.active > .file-node-content::after {
+  display: block;
+}
+
+.file-node-content:hover,
+.file-tree-node.active > .file-node-content,
+.file-library-node.active > .file-node-content {
+  color: var(--np-accent) !important;
+  font-weight: 600;
+  border: none !important;
+  border-left: none !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.file-node-background {
+  display: none !important;
+}
+
+.file-node-title {
+  /* 勿对 display 加 !important：重命名/新建时 Typora 会 display:none 原标题 */
+  display: block;
+  flex: 1 1 auto;
+  min-width: 0;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 13px !important;
+  line-height: 20px !important;
+  text-decoration: none !important;
+}
+
+/* 新建 / 重命名 — 编辑态退回 Typora 原生 float 流
+ * 平时用 flex；一进 .file-node-on-edit 就改回 float + BFC，
+ * 让 rename-div 自然占满图标右侧剩余宽度，不再和 flex/grid/内联 width 打架。 */
+.file-tree-rename-div {
+  display: none;
+}
+
+.file-node-on-edit > .file-node-content {
+  display: block !important;
+  overflow: hidden !important;
+  max-width: 100% !important;
+  white-space: nowrap !important;
+}
+
+.file-node-on-edit > .file-node-content > .file-node-open-state,
+.file-node-on-edit > .file-node-content > .file-node-icon {
+  float: left !important;
+  display: block !important;
+  flex: none !important;
+  position: static !important;
+  transform: none !important;
+}
+
+.file-node-on-edit > .file-node-content > .file-node-open-state {
+  width: 12px !important;
+  min-width: 12px !important;
+  margin: 0 6px 0 0 !important;
+}
+
+.file-node-on-edit > .file-node-content > .file-node-icon {
+  width: 16px !important;
+  margin: 0 6px 0 0 !important;
+}
+
+.file-node-on-edit > .file-node-content > .file-node-title {
+  display: none !important;
+}
+
+/* overflow:hidden 生成 BFC，贴着左侧 float，自动吃掉剩余宽度 */
+.file-node-on-edit > .file-node-content > .file-tree-rename-div {
+  display: block !important;
+  overflow: hidden !important;
+  position: static !important;
+  height: 22px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+}
+
+.file-tree-rename-input {
+  display: block !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  min-width: 0 !important;
+  height: 22px !important;
+  margin: 0 !important;
+  padding: 0 4px !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: 4px !important;
+  background: var(--np-paper) !important;
+  color: var(--np-ink) !important;
+  font-family: "MiSans", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 20px !important;
+  box-shadow: none !important;
+  outline: none !important;
+  box-sizing: border-box !important;
+}
+
+.file-tree-rename-input:focus {
+  border-color: var(--np-ink) !important;
+  box-shadow: 0 0 0 2px rgba(41, 50, 60, 0.12) !important;
+}
+
+/* 仅当前节点的 title/icon，勿用后代选择器以免子树全变蓝 */
+.file-node-content:hover > .file-node-title,
+.file-tree-node.active > .file-node-content > .file-node-title,
+.file-library-node.active > .file-node-content > .file-node-title {
+  color: var(--np-accent) !important;
+}
+
+.file-node-icon,
+.file-node-content .file-node-icon {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  float: none !important;
+  flex: 0 0 16px;
+  width: 16px;
+  height: 20px;
+  margin: 0 !important;
+  padding: 0 !important;
+  font-size: 14px !important;
+  line-height: 20px !important;
+  color: #8c959f !important;
+  /* FA 字形偏下，微上移与中文基线对齐 */
+  transform: translateY(-1px);
+}
+
+.file-node-content:hover > .file-node-icon,
+.file-tree-node.active > .file-node-content > .file-node-icon,
+.file-library-node.active > .file-node-content > .file-node-icon {
+  color: var(--np-accent) !important;
+}
+
+/* 文件列表模式 */
+#file-library-list,
+#file-library-search-result {
+  padding: 14px;
+}
+
+#file-library-list .file-list-item,
+#file-library-search-result .ty-search-item {
+  margin-bottom: 8px;
+  border: 1px solid transparent;
+  border-bottom-color: var(--np-border);
+  border-radius: 6px;
+  padding-left: 14px !important;
+  padding-right: 14px !important;
+  background: transparent;
+  box-shadow: none !important;
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+#file-library-list .file-list-item:hover,
+#file-library-search-result .ty-search-item:hover {
+  background: var(--np-accent-soft) !important;
+  border-color: var(--np-border);
+  color: var(--np-accent);
+}
+
+#file-library-list .file-list-item:hover .file-list-item-file-name {
+  color: var(--np-accent);
+}
+
+#file-library-list .file-list-item.active,
+#file-library-search-result .ty-search-item.active {
+  background: var(--np-accent-soft) !important;
+  border: 1px solid color-mix(in srgb, var(--np-accent) 40%, var(--np-border));
+  border-left: 1px solid color-mix(in srgb, var(--np-accent) 40%, var(--np-border)) !important;
+  box-shadow: none !important;
+  border-radius: 6px;
+  padding: 6px 12px !important;
+}
+
+.file-list-item-file-name {
+  color: var(--np-ink);
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none !important;
+}
+
+.file-list-item.active .file-list-item-file-name {
+  color: var(--np-accent) !important;
+  text-decoration: none !important;
+}
+
+.file-list-item-parent-loc,
+.file-list-item-time {
+  color: #8c959f;
+  font-size: 11.5px;
+}
+
+/* —— 大纲：时间轴圆点 + 层级缩进（竖线仅存在于子树内） —— */
+#outline-content {
+  position: relative;
+  font-size: 13px;
+  padding: 12px 12px 20px 10px;
+  line-height: 1.5;
+}
+
+/* 不要整屏贯穿竖线 */
+#outline-content::before {
+  display: none !important;
+  content: none !important;
+}
+
+#outline-content .outline-item-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+#outline-content .outline-item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  margin: 0 0 2px;
+  padding: 7px 10px 7px 26px !important;
+  border-radius: 8px;
+  color: var(--np-ink);
+  border: none !important;
+  background: transparent;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+/* 隐藏默认折叠箭头，改用圆点 */
+#outline-content .outline-expander {
+  position: absolute !important;
+  left: 4px !important;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px !important;
+  height: 12px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 2px solid #c5ccd4 !important;
+  border-radius: 50% !important;
+  background: var(--np-paper) !important;
+  color: transparent !important;
+  font-size: 0 !important;
+  line-height: 0 !important;
+  box-sizing: border-box;
+  z-index: 2;
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+#outline-content .outline-expander::before,
+#outline-content .outline-expander::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* 各级圆点 */
+#outline-content .outline-h1>.outline-item>.outline-expander {
+  width: 12px !important;
+  height: 12px !important;
+  left: 4px !important;
+  border-width: 2.5px !important;
+  border-color: var(--np-accent) !important;
+}
+
+#outline-content .outline-h2>.outline-item>.outline-expander {
+  width: 10px !important;
+  height: 10px !important;
+  left: 5px !important;
+  border-color: #79b8ff !important;
+}
+
+#outline-content .outline-h3>.outline-item>.outline-expander,
+#outline-content .outline-h4>.outline-item>.outline-expander,
+#outline-content .outline-h5>.outline-item>.outline-expander,
+#outline-content .outline-h6>.outline-item>.outline-expander {
+  width: 8px !important;
+  height: 8px !important;
+  left: 6px !important;
+  border-width: 1.5px !important;
+  border-color: #afb8c1 !important;
+}
+
+#outline-content .outline-item .outline-label {
+  display: block;
+  padding-left: 2px;
+  color: inherit;
+  font-weight: 450;
+  line-height: 1.45;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+}
+
+#outline-content .outline-h1>.outline-item .outline-label {
+  font-weight: 650;
+  font-size: 13.5px;
+  color: var(--np-ink);
+}
+
+#outline-content .outline-h2>.outline-item .outline-label {
+  font-weight: 600;
+  color: var(--np-ink);
+}
+
+#outline-content .outline-h3>.outline-item .outline-label,
+#outline-content .outline-h4>.outline-item .outline-label,
+#outline-content .outline-h5>.outline-item .outline-label,
+#outline-content .outline-h6>.outline-item .outline-label {
+  font-weight: 450;
+  color: #3d4853;
+  font-size: 12.5px;
+}
+
+#outline-content .outline-item:hover,
+#outline-drop-panel .outline-item:hover {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  border: none !important;
+  background: var(--np-accent-soft) !important;
+  color: var(--np-accent) !important;
+  border-radius: 8px;
+}
+
+#outline-content .outline-item:hover .outline-label {
+  color: var(--np-accent) !important;
+}
+
+#outline-content .outline-item:hover .outline-expander {
+  border-color: var(--np-accent) !important;
+  background: var(--np-paper) !important;
+  box-shadow: none;
+}
+
+#outline-content .outline-item-wrapper.active>.outline-item,
+.outline-item-active,
+#outline-content .outline-item-wrapper.active .outline-label,
+#outline-content .outline-item-wrapper.active>.outline-item .outline-label {
+  color: var(--np-accent) !important;
+  font-weight: 600;
+  background: var(--np-accent-soft) !important;
+  border-radius: 8px;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  border-left: none !important;
+  box-shadow: none !important;
+}
+
+#outline-content .outline-item:hover .outline-label,
+#outline-content a.outline-label,
+#outline-content .outline-label:hover,
+#outline-content .outline-label:focus,
+#outline-content .outline-label:active {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+#outline-content .outline-item-wrapper.active>.outline-item>.outline-expander {
+  border-color: var(--np-accent) !important;
+  background: var(--np-accent) !important;
+  box-shadow: none;
+}
+
+.typora-export .outline-item:hover {
+  margin-left: 0;
+  margin-right: 0;
+  border: none;
+}
+
+/* 子级缩进：每深入一级缩进一段，竖线只画在该子树范围内 */
+#outline-content .outline-children-container {
+  position: relative;
+  margin: 0 0 4px 10px;
+  padding: 2px 0 2px 14px;
+}
+
+#outline-content .outline-children-container::before {
+  content: "";
+  position: absolute;
+  left: 9px;
+  top: 10px;
+  bottom: 10px;
+  width: 2px;
+  border-radius: 2px;
+  background: #e6ebf0;
+  pointer-events: none;
+}
+
+/* 嵌套更深时再缩进一点 */
+#outline-content .outline-children-container .outline-children-container {
+  margin-left: 8px;
+  padding-left: 12px;
+}
+
+#outline-content .outline-children-container .outline-children-container::before {
+  left: 7px;
+  background: #edf0f3;
+}
+
+#typora-sidebar .footer,
+.sidebar-footer {
+  border-top: 1px solid var(--np-border);
+  background: var(--np-sidebar) !important;
+}
+
+.file-action-button {
+  border-radius: 8px;
+  color: var(--np-ink-soft);
+}
+
+.file-action-button:hover {
+  color: var(--np-accent);
+  background: rgba(41, 50, 60, 0.08);
+}
+
+/* —— 侧栏「查找」输入框 —— */
+.ty-sidebar-search-panel,
+#file-library-search-panel {
+  position: relative !important;
+  padding: 12px 14px !important;
+  border-bottom: 1px solid var(--np-border) !important;
+  background: var(--np-sidebar) !important;
+}
+
+#file-library-search-input,
+.native-window #file-library-search-input,
+#ty-sidebar-search-panel input[type="search"],
+#ty-sidebar-search-panel input[type="text"],
+.ty-sidebar-search-panel input {
+  width: 100% !important;
+  height: 36px !important;
+  margin: 0 !important;
+  padding: 0 92px 0 12px !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: 10px !important;
+  background: var(--np-paper) !important;
+  color: var(--np-ink) !important;
+  font-family: "MiSans", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif !important;
+  font-size: 13px !important;
+  line-height: 36px !important;
+  box-shadow: 0 1px 2px rgba(31, 35, 40, 0.04) !important;
+  outline: none !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+}
+
+#file-library-search-input::placeholder,
+.ty-sidebar-search-panel input::placeholder {
+  color: #8c959f !important;
+  opacity: 1 !important;
+  line-height: 36px !important;
+  vertical-align: middle;
+}
+
+#file-library-search-input:hover,
+.ty-sidebar-search-panel input:hover {
+  border-color: #afb8c1 !important;
+}
+
+#file-library-search-input:focus,
+.ty-sidebar-search-panel input:focus {
+  border-color: var(--np-accent) !important;
+  background: var(--np-paper) !important;
+  box-shadow: 0 0 0 3px rgba(41, 50, 60, 0.16) !important;
+}
+
+/* Aa / 整词 / 正则：与输入框同顶同高，图标 flex 居中 → 与「查找」文字同一水平线 */
+#file-library-search-panel .searchpanel-search-option-btn,
+#ty-sidebar-search-panel .searchpanel-search-option-btn,
+#sidebar-content #file-library-search-panel .searchpanel-search-option-btn,
+#ty-sidebar-search-tabs .searchpanel-search-option-btn {
+  top: 12px !important; /* = panel padding-top，与 input 顶边对齐 */
+  bottom: auto !important;
+  width: 26px !important;
+  height: 36px !important; /* = input height */
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  color: #8c959f !important;
+  opacity: 1 !important;
+  box-shadow: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+  transform: none !important;
+  transition: color 0.12s ease, background 0.12s ease;
+}
+
+#file-library-search-panel .searchpanel-search-option-btn:hover,
+#ty-sidebar-search-panel .searchpanel-search-option-btn:hover {
+  color: var(--np-accent) !important;
+  background: rgba(41, 50, 60, 0.1) !important;
+}
+
+#file-library-search-panel .searchpanel-search-option-btn.active,
+#ty-sidebar-search-panel .searchpanel-search-option-btn.active,
+#file-library-search-panel .searchpanel-search-option-btn[aria-pressed="true"],
+#ty-sidebar-search-panel .searchpanel-search-option-btn[aria-pressed="true"] {
+  color: var(--np-accent) !important;
+  background: var(--np-accent-soft) !important;
+}
+
+#md-searchpanel {
+  background: var(--np-paper);
+  border-bottom: 1px solid var(--np-border);
+}
+
+#md-searchpanel input {
+  background: var(--np-paper);
+  border: 1px solid var(--np-border);
+  border-radius: var(--np-radius-item);
+  padding-left: 14px;
+}
+
+#md-searchpanel input:focus {
+  border-color: var(--np-accent);
+  box-shadow: 0 0 0 3px rgba(41, 50, 60, 0.15);
+  outline: none;
+}
+
+#md-searchpanel .btn {
+  border-radius: var(--np-radius-item);
+}
+
+.md-search-hit {
+  background: var(--search-select-bg-color);
+  border-radius: var(--np-radius-item);
+}
+

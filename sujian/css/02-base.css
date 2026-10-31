@@ -1,0 +1,133 @@
+/* sujian/css/02-base.css — 全局底色、正文区、滚动条、光标 */
+
+/* =============================================================
+ * 2. 全局底色与正文（guide body + article 纸张感）
+ * ============================================================= */
+html {
+  height: 100vh;
+  background-color: var(--np-bg);
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  font-family: var(--np-serif);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--np-bg);
+  color: var(--np-ink);
+  font-size: 17px;
+  line-height: 1.85;
+  font-family: var(--np-serif) !important;
+  overflow-x: hidden;
+}
+
+body.os-windows {
+  font-family: var(--np-serif) !important;
+}
+
+/* 侧栏 / 设置等界面用无衬线 */
+#typora-sidebar,
+.typora-source .CodeMirror,
+.modal-content,
+.dropdown-menu,
+#outline-content,
+.file-list-item,
+.ty-preferences {
+  font-family: var(--np-sans);
+}
+
+/* 编辑区白纸卡片
+ * 底部留白约半屏：输入时光标可上滑，不被浮动工具栏顶住 */
+#write {
+  max-width: 860px;
+  margin: 12px auto 24px;
+  padding: 28px 64px 45vh;
+  color: var(--np-ink);
+  font-family: var(--np-serif) !important;
+  caret-color: var(--np-caret);
+}
+
+/* 正文：衬线；标题：无衬线（见 headings） */
+#write p,
+#write li,
+#write blockquote,
+#write td,
+#write th,
+#write figcaption {
+  font-family: var(--np-serif) !important;
+}
+
+#write h1,
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6 {
+  font-family: var(--np-sans) !important;
+}
+
+/* =============================================================
+ * 输入光标 — 正文 caret + CodeMirror 竖线
+ * ============================================================= */
+#write,
+#write [contenteditable],
+#write input,
+#write textarea,
+.ty-input,
+.ty-cm-lang-input,
+input.ty-input,
+textarea {
+  caret-color: var(--np-caret);
+}
+
+#write pre.md-fences .CodeMirror-cursor,
+#write pre.md-fences div.CodeMirror-cursor,
+.cm-s-inner .CodeMirror-cursor,
+.cm-s-inner div.CodeMirror-cursor,
+.CodeMirror.cm-s-typora-default div.CodeMirror-cursor,
+#typora-source .CodeMirror-cursor,
+#typora-source div.CodeMirror-cursor {
+  border-left: 2px solid var(--np-caret) !important;
+  border-right: none !important;
+  margin-left: -1px;
+}
+
+#write p {
+  margin: 0.9em 0;
+}
+
+::selection {
+  background: var(--select-text-bg-color);
+}
+
+/* 隐藏滚动条，仍可滚轮 / 触控板滚动 */
+* {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* old Edge */
+}
+
+::-webkit-scrollbar {
+  width: 0 !important;
+  height: 0 !important;
+  display: none !important;
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track {
+  display: none !important;
+  background: transparent;
+}
+
+@media (max-width: 720px) {
+  #write {
+    margin: 0;
+    padding: 24px 20px 40vh;
+    border-radius: 0;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+  }
+}
+

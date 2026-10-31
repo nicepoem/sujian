@@ -1,0 +1,412 @@
+/* sujian/css/17-dark-overrides.css — 暗色主题硬编码色值覆盖（最后加载） */
+
+html,
+body {
+  background: var(--np-paper) !important;
+  color: var(--np-ink) !important;
+}
+
+#write {
+  background: var(--np-paper) !important;
+  color: var(--np-ink) !important;
+}
+
+/* —— 行内 —— */
+#write strong {
+  color: var(--np-strong) !important;
+}
+
+#write code,
+#write tt {
+  background: var(--np-code-bg) !important;
+  color: var(--np-code-fg) !important;
+}
+
+/* —— 引用 —— */
+#write blockquote:not(.md-alert),
+#write blockquote[mdtype="blockquote"]:not(.md-alert),
+#write [mdtype="blockquote"]:not(.md-alert),
+#write blockquote.md-focus:not(.md-alert),
+blockquote[mdtype="blockquote"]:not(.md-alert) {
+  background: #1c2128 !important;
+  background-color: #1c2128 !important;
+  color: var(--np-ink-soft) !important;
+}
+
+#write blockquote:not(.md-alert)>p,
+#write blockquote:not(.md-alert) .md-p,
+#write blockquote:not(.md-alert) p.md-end-block,
+#write blockquote:not(.md-alert) p.md-focus {
+  color: var(--np-ink-soft) !important;
+}
+
+#write blockquote:not(.md-alert) blockquote {
+  background: #21262d !important;
+}
+
+#write blockquote.md-alert,
+#write .md-alert {
+  color: var(--np-ink) !important;
+}
+
+#write .md-alert.md-alert-note {
+  background: #122033 !important;
+  border-left-color: #388bfd !important;
+}
+
+#write .md-alert-note .md-alert-text,
+#write .md-alert-text-note {
+  color: #58a6ff !important;
+}
+
+#write .md-alert.md-alert-tip {
+  background: #12261c !important;
+  border-left-color: #3fb950 !important;
+}
+
+#write .md-alert-tip .md-alert-text,
+#write .md-alert-text-tip {
+  color: #3fb950 !important;
+}
+
+#write blockquote.md-alert.md-alert-important,
+#write .md-alert.md-alert-important {
+  background: #2a1a33 !important;
+  border-left-color: #a371f7 !important;
+}
+
+#write .md-alert-important .md-alert-text,
+#write .md-alert-text-important,
+#write .md-alert.md-alert-important .md-alert-text {
+  color: #d2a8ff !important;
+}
+
+#write .md-alert.md-alert-warning {
+  background: #2a2111 !important;
+  border-left-color: #d29922 !important;
+}
+
+#write .md-alert-warning .md-alert-text,
+#write .md-alert-text-warning {
+  color: #e3b341 !important;
+}
+
+#write .md-alert.md-alert-caution {
+  background: #2a1515 !important;
+  border-left-color: var(--np-heading-accent) !important;
+}
+
+#write .md-alert-caution .md-alert-text,
+#write .md-alert-text-caution {
+  color: #ff7b72 !important;
+}
+
+/* —— 代码块：暗色下用 One Dark Pro —— */
+#write pre.md-fences,
+#write pre.md-fences.md-focus,
+#write .md-fences,
+#write pre.md-fences .CodeMirror,
+#write pre.md-fences .CodeMirror-scroll,
+#write pre.md-fences .CodeMirror-sizer,
+#write pre.md-fences .CodeMirror-gutters,
+#write pre.md-fences .CodeMirror-lines,
+#write pre.md-fences .CodeMirror-code,
+#write pre.md-fences .CodeMirror-gutter,
+#write pre.md-fences .CodeMirror-linenumbers {
+  background: #282c34 !important;
+}
+
+#write pre.md-fences .CodeMirror,
+#write pre.md-fences .CodeMirror pre,
+#write pre.md-fences>code,
+pre.md-fences code.hljs,
+pre code.hljs {
+  color: #abb2bf !important;
+}
+
+.cm-s-inner.CodeMirror,
+.cm-s-inner {
+  background: #282c34 !important;
+  color: #abb2bf !important;
+}
+
+.cm-s-inner .cm-keyword { color: #c678dd !important; }
+.cm-s-inner .cm-atom,
+.cm-s-inner .cm-number,
+.cm-s-inner .cm-qualifier { color: #d19a66 !important; }
+.cm-s-inner .cm-def,
+.cm-s-inner .cm-meta,
+.cm-s-inner .cm-link { color: #61afef !important; }
+.cm-s-inner .cm-variable,
+.cm-s-inner .cm-variable-2,
+.cm-s-inner .cm-property,
+.cm-s-inner .cm-tag,
+.cm-s-inner .cm-header,
+.cm-s-inner .cm-error { color: #e06c75 !important; }
+.cm-s-inner .cm-variable-3,
+.cm-s-inner .cm-type,
+.cm-s-inner .cm-attribute,
+.cm-s-inner .cm-builtin { color: #e5c07b !important; }
+.cm-s-inner .cm-operator { color: #56b6c2 !important; }
+.cm-s-inner .cm-comment,
+.cm-s-inner .cm-quote,
+.cm-s-inner .cm-hr { color: #7f848e !important; }
+.cm-s-inner .cm-string,
+.cm-s-inner .cm-string-2 { color: #98c379 !important; }
+.cm-s-inner .cm-bracket { color: #abb2bf !important; }
+
+#write pre.md-fences .CodeMirror-linenumber {
+  color: #4b5263 !important;
+}
+
+#write pre.md-fences .CodeMirror-selected,
+#write pre.md-fences .CodeMirror-focused .CodeMirror-selected {
+  background: #3e4451 !important;
+}
+
+#write pre.md-fences .CodeMirror-cursor {
+  border-left-color: #528bff !important;
+}
+
+#write pre.md-fences[lang]:not([lang=""]):not([lang="text"]):not([lang="plain"]):not([lang="txt"]):not(.md-focus)::after,
+#write pre.md-fences .code-tooltip .ty-input,
+#write pre.md-fences input.ty-input,
+#write pre.md-fences .ty-cm-lang-input {
+  color: #7f848e !important;
+}
+
+/* Mermaid 暗色节点 */
+#write .md-diagram-panel .node rect,
+#write .md-diagram-panel .node polygon,
+#write .md-diagram-panel-preview .node rect,
+#write .md-diagram-panel-preview .node polygon {
+  fill: #2d333b !important;
+  stroke: #8b7ec8 !important;
+}
+
+#write .md-diagram-panel .node .label,
+#write .md-diagram-panel .nodeLabel,
+#write .md-diagram-panel .nodeLabel *,
+#write .md-diagram-panel-preview .node .label,
+#write .md-diagram-panel-preview .nodeLabel,
+#write .md-diagram-panel-preview .nodeLabel * {
+  color: var(--np-ink) !important;
+  fill: var(--np-ink) !important;
+}
+
+#write .md-diagram-panel .edgePath .path,
+#write .md-diagram-panel .flowchart-link,
+#write .md-diagram-panel-preview .edgePath .path,
+#write .md-diagram-panel-preview .flowchart-link {
+  stroke: #8b949e !important;
+}
+
+#write .md-diagram-panel marker path,
+#write .md-diagram-panel-preview marker path {
+  fill: #8b949e !important;
+  stroke: #8b949e !important;
+}
+
+#write .md-diagram-panel .cluster rect,
+#write .md-diagram-panel-preview .cluster rect {
+  fill: #161b22 !important;
+  stroke: #484f58 !important;
+}
+
+/* —— 表格工具栏 / 网格 —— */
+.md-table-edit,
+.ty-table-edit,
+.md-table-resize-popover,
+.md-tooltip-remove {
+  background: var(--np-paper) !important;
+  border-color: var(--np-border) !important;
+  color: var(--np-ink) !important;
+}
+
+.md-table-edit .btn:hover,
+.ty-table-edit .btn:hover,
+.md-table-edit a:hover,
+.ty-table-edit a:hover {
+  background: var(--np-accent-soft) !important;
+  color: var(--np-ink) !important;
+}
+
+.md-grid-board-wrap table.md-grid-board,
+table.md-grid-board {
+  background: var(--np-paper) !important;
+  border-color: var(--np-border) !important;
+}
+
+table.md-grid-board th,
+table.md-grid-board td {
+  border-color: var(--np-border) !important;
+  background: var(--np-th-bg) !important;
+}
+
+/* —— 列表 —— */
+#write ul>li::marker,
+#write ol>li::marker {
+  color: var(--np-ink-soft) !important;
+}
+
+#write .task-list-item input[type="checkbox"] {
+  border-color: var(--np-border) !important;
+  background: var(--np-paper) !important;
+}
+
+/* —— 侧栏 —— */
+#typora-sidebar,
+#typora-sidebar #sidebar-content,
+#typora-sidebar .sidebar-content,
+#outline-content,
+#file-library,
+#file-library-tree,
+.use-file-tree-style #file-library-tree {
+  background: var(--np-sidebar) !important;
+  color: var(--np-ink) !important;
+}
+
+.file-node-children {
+  border-left-color: var(--np-border) !important;
+}
+
+.file-node-root>.file-node-children {
+  border-left-color: var(--np-border) !important;
+}
+
+.file-node-children>.file-tree-node::before,
+.file-node-children>.file-library-node::before {
+  border-top-color: var(--np-border) !important;
+}
+
+.file-node-children>.file-tree-node:last-child::after,
+.file-node-children>.file-library-node:last-child::after {
+  background: var(--np-sidebar) !important;
+}
+
+.fa-folder:before,
+.fa-folder:after,
+.fa-caret-right,
+.fa-caret-down,
+.file-node-content .file-node-open-state,
+.file-node-icon,
+.file-node-content .file-node-icon {
+  color: #8b949e !important;
+}
+
+.sidebar-tabs {
+  border-bottom-color: var(--np-border) !important;
+  background: var(--np-sidebar) !important;
+}
+
+#file-library-search-input,
+.ty-sidebar-search-panel input {
+  background: var(--np-accent-soft) !important;
+  border-color: var(--np-border) !important;
+  color: var(--np-ink) !important;
+}
+
+/* —— UI / 弹窗 / 偏好 —— */
+.modal-content,
+#common-dialog .modal-content,
+.dropdown-menu,
+.context-menu {
+  background: var(--np-paper) !important;
+  border-color: var(--np-border) !important;
+  color: var(--np-ink) !important;
+}
+
+.modal-footer,
+#common-dialog .modal-footer {
+  background: #0d1117 !important;
+}
+
+.btn,
+button.btn,
+.long-btn {
+  background: var(--np-accent-soft) !important;
+  border-color: var(--np-border) !important;
+  color: var(--np-ink) !important;
+}
+
+.btn:hover,
+button.btn:hover,
+.long-btn:hover {
+  background: #30363d !important;
+  border-color: #484f58 !important;
+  color: var(--np-ink) !important;
+}
+
+.btn-primary,
+button.btn.btn-primary,
+.btn.btn-primary,
+.btn-primary:hover,
+button.btn.btn-primary:hover {
+  background: #e6edf3 !important;
+  border-color: #e6edf3 !important;
+  color: #0d1117 !important;
+}
+
+html.ty-preferences,
+body.ty-preferences,
+.ty-preferences {
+  --side-bar-bg-color: var(--np-sidebar);
+  --bg-color: var(--np-bg);
+  background: var(--np-bg) !important;
+  color: var(--np-ink) !important;
+}
+
+body.ty-preferences .window-content,
+.ty-preferences .window-content,
+.ty-preferences .sidebar,
+body.ty-preferences .nav-group-item:hover,
+body.ty-preferences .nav-group-item.active {
+  background: var(--np-accent-soft) !important;
+  color: var(--np-ink) !important;
+}
+
+/* —— 源码模式 —— */
+#typora-source,
+.typora-source .CodeMirror {
+  background: var(--np-paper) !important;
+  color: var(--np-ink) !important;
+}
+
+/* —— 导出 / 打印：暗色主题导出仍用浅色纸面，保证阅读与打印 —— */
+@media screen {
+  body.typora-export {
+    background: #0f1216 !important;
+  }
+
+  body.typora-export .typora-export-content {
+    background: #0f1216 !important;
+  }
+
+  .typora-export #write,
+  .typora-export-content #write {
+    background: var(--np-paper) !important;
+    color: var(--np-ink) !important;
+  }
+}
+
+@media print {
+  html,
+  body,
+  body.typora-export,
+  .typora-export-content,
+  #write {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #29323c !important;
+  }
+}
+
+/* tooltip 玻璃在暗色下略提不透明度 */
+#ty-tooltip,
+.ty-tooltip,
+.ty-tooltip.shown,
+.ty-editor-toolbar-tooltip {
+  background: rgba(22, 27, 34, 0.82) !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  color: var(--np-ink) !important;
+}

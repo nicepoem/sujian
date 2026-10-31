@@ -1,0 +1,71 @@
+/* sujian/css/01-tokens.css — :root 主题变量 */
+
+/* =============================================================
+ * 1. 主题变量
+ *    正文墨色中性；h2/h3 用 --np-heading-accent 蓝
+ *    行内 code 单独用 --np-code-fg，不跟高亮色
+ *    代码块背景 --np-pre-bg = One Light
+ * ============================================================= */
+:root {
+  /* guide tokens */
+  --np-bg: #ffffff;
+  --np-paper: #ffffff;
+  --np-sidebar: #f6f8fa;
+  --np-ink: #29323c;
+  --np-ink-soft: #57606a;
+  --np-heading-accent: #1e80ff;
+  --np-code-fg: #cf222e;
+  --np-accent: var(--np-ink);
+  --np-accent-soft: #eaeef2;
+  --np-border: #d0d7de;
+  --np-mark-bg: #fff3ad;
+  --np-u-line: #8c959f;
+  --np-strong: #29323c;
+  --np-del: #8c959f;
+  --np-h3: #29323c;
+  --np-code-bg: #afb8c133;
+  --np-pre-bg: #fafafa;
+  --np-th-bg: #f6f8fa;
+  --np-tr-even: #fbfcfd;
+  --np-link-dash: #afb8c1;
+  --np-link-hover: var(--np-ink);
+  --np-serif: "Noto Serif SC", "Source Han Serif SC", "Source Han Serif CN",
+    "Songti SC", "STSong", "华文宋体", "SimSun", "NSimSun", Georgia,
+    "Times New Roman", serif;
+  --np-sans: "MiSans", "Segoe UI", "PingFang SC", "Microsoft YaHei",
+    "Helvetica Neue", Arial, sans-serif;
+  --np-radius: 10px;
+  --np-quote-radius: 12px;
+  --np-radius-item: 6px;
+  --np-shadow: 0 8px 30px rgba(31, 35, 40, 0.06);
+  --np-caret: var(--np-ink);
+
+  /* Typora 官方变量 */
+  --bg-color: var(--np-paper);
+  --side-bar-bg-color: var(--np-sidebar);
+  --text-color: var(--np-ink);
+  --title-color: var(--np-ink);
+  --primary-color: var(--np-ink);
+  --primary-btn-border-color: var(--np-ink);
+  --primary-btn-text-color: #ffffff;
+  --active-file-bg-color: var(--np-accent-soft);
+  --active-file-text-color: var(--np-ink);
+  --active-file-border-color: transparent;
+  --item-hover-bg-color: var(--np-accent-soft);
+  --item-hover-text-color: var(--np-ink);
+  --select-text-bg-color: rgba(41, 50, 60, 0.14);
+  --search-select-bg-color: rgba(41, 50, 60, 0.16);
+  --search-select-text-bg-color: rgba(41, 50, 60, 0.16);
+  --meta-content-color: var(--np-ink-soft);
+  --md-char-color: #8c959f;
+  --window-border: none;
+  --raw-window-border: none;
+  --control-text-color: var(--np-ink-soft);
+  --control-text-hover-color: var(--np-ink);
+  --monospace: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  --mermaid-theme: base;
+  --mermaid-font-family: "MiSans", "Segoe UI", "PingFang SC", sans-serif;
+  --mermaid-flowchart-curve: linear;
+}
+

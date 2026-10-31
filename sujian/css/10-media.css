@@ -1,0 +1,44 @@
+/* sujian/css/10-media.css — 图片 / hr / 脚注 */
+
+/* =============================================================
+ * 10. 图片 / hr / 脚注
+ * ============================================================= */
+#write p>img:only-child,
+#write img {
+  display: block;
+  max-width: 100%;
+  margin: 1em auto;
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+#write figure figcaption,
+#write .md-image>.md-meta {
+  color: var(--np-ink-soft);
+  font-size: 0.85em;
+  text-align: center;
+}
+
+#write hr {
+  border: none;
+  height: 2px;
+  margin: 2.5em 0;
+  background: linear-gradient(90deg, transparent, var(--np-border), transparent);
+}
+
+#write sup.md-footnote {
+  background: var(--np-accent-soft);
+  color: var(--np-accent);
+  border-radius: 999px;
+  padding: 0.05em 0.5em;
+  font-size: 0.78em;
+}
+
+.footnotes {
+  font-size: 0.9em;
+  color: var(--np-ink-soft);
+  margin-top: 3em;
+  border-top: 1px solid var(--np-border);
+  padding-top: 1em;
+}
+

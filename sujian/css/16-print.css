@@ -1,0 +1,140 @@
+/* sujian/css/16-print.css — 打印与导出 */
+
+/* =============================================================
+ * 16. 打印 / 导出
+ * PDF / 打印：整页纯白，去掉导出预览的「白纸卡片」边距与灰底
+ * ============================================================= */
+@media print {
+
+  html,
+  body,
+  body.typora-export,
+  .typora-export-content,
+  #write {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  @page {
+    margin: 15mm;
+    background: #ffffff;
+  }
+
+  #write {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  #write pre.md-fences,
+  #write .md-math-block,
+  #write .md-toc,
+  #write table,
+  #write blockquote {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+
+  /* PDF：收紧代码块行距（避免继承正文 1.85 / 行内 pre 外边距） */
+  #write pre.md-fences,
+  #write pre.md-fences .CodeMirror,
+  #write pre.md-fences .CodeMirror pre,
+  #write pre.md-fences .CodeMirror-line,
+  #write pre.md-fences .CodeMirror-line-like,
+  #write pre.md-fences .CodeMirror-linenumber,
+  #write pre.md-fences .CodeMirror-gutter-wrapper,
+  #write pre.md-fences .CodeMirror-code>div,
+  #write pre.md-fences>code {
+    line-height: 1.4 !important;
+    font-size: 10.5pt !important;
+  }
+
+  #write pre.md-fences pre,
+  #write pre.md-fences .CodeMirror-line,
+  #write pre.md-fences .CodeMirror-line-like,
+  #write pre.md-fences .CodeMirror-code>div {
+    margin: 0 !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    min-height: 0 !important;
+  }
+
+  #write pre.md-fences .CodeMirror-lines {
+    padding: 28px 0 12px !important;
+  }
+
+  #write h1,
+  #write h2,
+  #write h3 {
+    break-after: avoid;
+  }
+
+  #write a {
+    color: var(--np-accent);
+  }
+
+  #write a[href^="http"]::after {
+    display: none;
+  }
+
+  .md-task-list-item>input {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+/* HTML 导出；PDF 走 @media print，不受此影响 */
+@media screen {
+  body.typora-export {
+    background: #ffffff !important;
+  }
+
+  body.typora-export .typora-export-content {
+    background: #ffffff !important;
+  }
+
+  .typora-export #write,
+  .typora-export-content #write {
+    background: #ffffff;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    max-width: 860px;
+    margin: 48px auto;
+    padding: 56px 64px 80px;
+    box-sizing: border-box;
+  }
+}
+
+/* 导出 HTML 手机端：收窄左右边距，避免两侧留白过大 */
+@media screen and (max-width: 720px) {
+  body.typora-export,
+  .typora-export-content {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  .typora-export #write,
+  .typora-export-content #write {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 auto !important;
+    padding: 20px 16px 40px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .typora-export #write,
+  .typora-export-content #write {
+    padding: 16px 12px 32px !important;
+  }
+}

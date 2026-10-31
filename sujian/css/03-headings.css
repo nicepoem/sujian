@@ -1,0 +1,108 @@
+/* sujian/css/03-headings.css — h1–h6 */
+
+/* =============================================================
+ * 3. 标题（h1 居中 / h2 左竖条 / h3 纯文字）
+ * ============================================================= */
+#write h1,
+#write h2,
+#write h3,
+#write h4,
+#write h5,
+#write h6 {
+  position: relative;
+  color: var(--title-color);
+  scroll-margin-top: 24px;
+  page-break-after: avoid;
+}
+
+#write h1 {
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-align: center;
+  padding-bottom: 0;
+  border-bottom: none;
+  margin: 0 0 1em;
+  line-height: 1.35;
+}
+
+#write h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.55em;
+  font-family: var(--np-sans);
+  font-size: 1.6rem;
+  margin: 2.2em 0 0.8em;
+  line-height: 1.4;
+  padding-left: 0;
+  border: none;
+  background: transparent;
+}
+
+#write h2::before {
+  content: "";
+  position: static;
+  flex: 0 0 5px;
+  align-self: center;
+  width: 5px;
+  height: 0.72em;
+  margin: 0;
+  border-radius: 4px;
+  background: var(--np-heading-accent);
+  transform: none;
+}
+
+/* h3：无前缀修饰；关掉 Typora 聚焦 “h3” 徽章 */
+#write h3 {
+  display: block;
+  position: relative;
+  font-family: var(--np-sans);
+  font-size: 1.28rem;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  line-height: 1.45;
+  margin: 1.9em 0 0.75em;
+  padding: 0;
+  color: var(--np-ink);
+  border: none;
+  background: transparent;
+}
+
+#write h3::before,
+#write h3.md-focus::before,
+#write h3::after {
+  content: none !important;
+  display: none !important;
+  border: none !important;
+  background: none !important;
+}
+
+#write h3+* {
+  margin-top: 1em !important;
+}
+
+#write h4 {
+  font-size: 1.1rem;
+  margin: 1.5em 0 0.6em;
+}
+
+#write h5 {
+  font-size: 1rem;
+  margin: 1.3em 0 0.5em;
+  color: var(--np-ink-soft);
+}
+
+#write h6 {
+  font-size: 0.95rem;
+  margin: 1.2em 0 0.5em;
+  color: var(--np-ink-soft);
+}
+
+#write h1.md-focus::before,
+#write h2.md-focus::before,
+#write h4.md-focus::before,
+#write h5.md-focus::before,
+#write h6.md-focus::before {
+  color: var(--np-accent);
+}
+

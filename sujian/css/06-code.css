@@ -1,0 +1,659 @@
+/* sujian/css/06-code.css �?代码�?One Light / 语言标签 / Mermaid */
+
+/* =============================================================
+ * 6. 代码�?�?One Light 
+ * ============================================================= */
+
+/* —�?容器（仅外层 fences；勿用泛匹配 pre，否则导出时行内 pre 也会吃到 margin�?—�?*/
+#write pre.md-fences,
+#write pre.md-fences.md-focus,
+#write .md-fences,
+.typora-export #write>pre.md-fences,
+.typora-export #write>pre:not(.CodeMirror-line):not(.CodeMirror-line-like),
+.typora-export-content #write>pre.md-fences,
+.typora-export-content #write>pre:not(.CodeMirror-line):not(.CodeMirror-line-like) {
+  position: relative !important;
+  margin: 1.2em 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 10px !important;
+  overflow: visible !important;
+  background: var(--np-pre-bg) !important;
+  box-shadow: none !important;
+}
+
+/* 导出：行�?pre / CodeMirror 行清零间距，避免行距被撑开 */
+.typora-export #write pre.md-fences pre,
+.typora-export #write pre.md-fences .CodeMirror-line,
+.typora-export #write pre.md-fences .CodeMirror-line-like,
+.typora-export #write pre.md-fences .CodeMirror-code>div,
+.typora-export-content #write pre.md-fences pre,
+.typora-export-content #write pre.md-fences .CodeMirror-line,
+.typora-export-content #write pre.md-fences .CodeMirror-line-like,
+.typora-export-content #write pre.md-fences .CodeMirror-code>div {
+  margin: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  line-height: 1.45 !important;
+  min-height: 0 !important;
+  height: auto !important;
+}
+
+/* Mac 窗口圆点（红 / �?/ 绿）�?�?.md-fences 外层，避免命中行�?pre 导致 PDF 逐行重复 */
+#write pre.md-fences:not([lang="mermaid"]):not([lang="sequence"]):not([lang="flow"]):not([lang="graphviz"]):not([lang="plantuml"])::before,
+.typora-export #write pre.md-fences:not([class*="mermaid"])::before,
+.typora-export-content #write pre.md-fences:not([class*="mermaid"])::before,
+.typora-export #write>pre:not([class*="mermaid"]):not(.CodeMirror-line):not(.CodeMirror-line-like)::before,
+.typora-export-content #write>pre:not([class*="mermaid"]):not(.CodeMirror-line):not(.CodeMirror-line-like)::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 12px !important;
+  left: 14px !important;
+  z-index: 5 !important;
+  width: 10px !important;
+  height: 10px !important;
+  border-radius: 50% !important;
+  background: #ff5f56 !important;
+  box-shadow: 16px 0 0 #ffbd2e, 32px 0 0 #27c93f !important;
+  pointer-events: none !important;
+}
+
+/* 导出/PDF：清除代码行、嵌�?pre 上误加的圆点 */
+#write pre.md-fences pre::before,
+#write pre.md-fences .CodeMirror-line::before,
+#write pre.md-fences .CodeMirror-line-like::before,
+#write pre.md-fences .CodeMirror pre::before,
+.typora-export #write pre pre::before,
+.typora-export #write .CodeMirror-line::before,
+.typora-export #write .CodeMirror-line-like::before,
+.typora-export #write .CodeMirror pre::before,
+.typora-export-content #write pre pre::before,
+.typora-export-content #write .CodeMirror-line::before,
+.typora-export-content #write .CodeMirror-line-like::before,
+.typora-export-content #write .CodeMirror pre::before {
+  content: none !important;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  background: none !important;
+  box-shadow: none !important;
+}
+
+/* —�?内容区：对齐 guide `pre code` —�?*/
+#write pre.md-fences .CodeMirror,
+#write pre.md-fences .CodeMirror-scroll,
+#write pre.md-fences .CodeMirror-sizer,
+#write pre.md-fences .CodeMirror-gutters,
+#write pre.md-fences .CodeMirror-lines,
+#write pre.md-fences .CodeMirror-code {
+  background: var(--np-pre-bg) !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+#write pre.md-fences .CodeMirror {
+  position: relative;
+  z-index: 1;
+  height: auto !important;
+  color: #383a42;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace !important;
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: none !important;
+}
+
+/* 顶部多留一行给 Mac 圆点 */
+#write pre.md-fences .CodeMirror-lines {
+  padding: 34px 0 16px !important;
+}
+
+#write pre.md-fences .CodeMirror pre {
+  padding: 0 16px 0 8px !important;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace !important;
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+  color: #383a42;
+}
+
+/* �?CodeMirror 时（导出 HTML / 部分渲染�?*/
+#write pre.md-fences>code,
+.typora-export #write>pre.md-fences>code,
+.typora-export #write>pre>code,
+.typora-export-content #write>pre.md-fences>code,
+.typora-export-content #write>pre>code,
+pre.md-fences code.hljs,
+pre code.hljs {
+  display: block !important;
+  padding: 34px 16px 16px !important;
+  overflow-x: auto !important;
+  background: var(--np-pre-bg) !important;
+  color: #383a42 !important;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace !important;
+  font-size: 15px !important;
+  line-height: 1.45 !important;
+  border: none !important;
+  border-radius: 0 !important;
+}
+
+/* 行号：与代码同字�?行高，保证垂直对齐；无右侧竖�?*/
+#write pre.md-fences .CodeMirror-gutters {
+  background: var(--np-pre-bg) !important;
+  border: none !important;
+  border-right: none !important;
+  box-shadow: none !important;
+}
+
+#write pre.md-fences .CodeMirror-gutter,
+#write pre.md-fences .CodeMirror-linenumbers {
+  background: var(--np-pre-bg) !important;
+  border: none !important;
+  border-right: none !important;
+}
+
+#write pre.md-fences .CodeMirror-linenumber,
+#write pre.md-fences .CodeMirror-gutter-wrapper {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace !important;
+  font-size: 15px !important;
+  font-weight: 400 !important;
+  line-height: 1.65 !important;
+  height: auto !important;
+  color: #9d9d9f !important;
+  padding: 0 4px 0 8px !important;
+  text-align: right !important;
+  min-width: 1.6em !important;
+  opacity: 1 !important;
+  vertical-align: middle !important;
+  box-sizing: border-box !important;
+}
+
+/* 强制每行行高一致，避免行号与代码逐行漂移 */
+#write pre.md-fences .CodeMirror-code>div,
+#write pre.md-fences .CodeMirror-code>pre,
+#write pre.md-fences .CodeMirror-line,
+#write pre.md-fences .CodeMirror-line-like {
+  font-size: 15px !important;
+  line-height: 1.65 !important;
+}
+
+#write pre.md-fences .CodeMirror-cursor {
+  border-left: 2px solid #526fff !important;
+}
+
+#write pre.md-fences .CodeMirror-selected,
+#write pre.md-fences .CodeMirror-focused .CodeMirror-selected {
+  background: #ebebeb !important;
+}
+
+/* —�?One Light 语法色（CodeMirror / highlight.js）—�?   base #fafafa · fg #383a42 · comment #a0a1a7
+   keyword #a626a4 · string #50a14f · fn #4078f2
+   type #c18401 · var #e45649 · number #986801 · cyan #0184bc */
+.cm-s-inner.CodeMirror,
+.cm-s-inner {
+  background: var(--np-pre-bg);
+  color: #383a42;
+}
+
+.cm-s-inner .cm-keyword {
+  color: #a626a4;
+}
+
+/* hljs-keyword */
+.cm-s-inner .cm-atom {
+  color: #986801;
+}
+
+/* hljs-literal */
+.cm-s-inner .cm-number {
+  color: #986801;
+}
+
+/* hljs-number */
+.cm-s-inner .cm-def {
+  color: #4078f2;
+}
+
+/* hljs-title / def */
+.cm-s-inner .cm-variable {
+  color: #e45649;
+}
+
+/* hljs-variable �?hue-5 */
+.cm-s-inner .cm-variable-2 {
+  color: #e45649;
+}
+
+/* hljs-name / section */
+.cm-s-inner .cm-variable-3,
+.cm-s-inner .cm-type {
+  color: #986801;
+}
+
+/* hljs-type / attr */
+.cm-s-inner .cm-property {
+  color: #e45649;
+}
+
+.cm-s-inner .cm-operator {
+  color: #0184bc;
+}
+
+.cm-s-inner .cm-comment {
+  color: #a0a1a7;
+  font-style: italic;
+}
+
+/* hljs-comment */
+.cm-s-inner .cm-string {
+  color: #50a14f;
+}
+
+/* hljs-string */
+.cm-s-inner .cm-string-2 {
+  color: #50a14f;
+}
+
+/* hljs-regexp */
+.cm-s-inner .cm-meta {
+  color: #4078f2;
+}
+
+/* hljs-meta */
+.cm-s-inner .cm-qualifier {
+  color: #986801;
+}
+
+.cm-s-inner .cm-builtin {
+  color: #c18401;
+}
+
+/* hljs-built_in */
+.cm-s-inner .cm-bracket {
+  color: #383a42;
+}
+
+.cm-s-inner .cm-tag {
+  color: #e45649;
+}
+
+/* hljs-name */
+.cm-s-inner .cm-attribute {
+  color: #986801;
+}
+
+/* hljs-attr */
+.cm-s-inner .cm-header {
+  color: #e45649;
+}
+
+.cm-s-inner .cm-quote {
+  color: #a0a1a7;
+  font-style: italic;
+}
+
+.cm-s-inner .cm-hr {
+  color: #a0a1a7;
+}
+
+.cm-s-inner .cm-link {
+  color: #4078f2;
+  text-decoration: underline;
+}
+
+.cm-s-inner .cm-error {
+  color: #e45649;
+}
+
+/* 导出 HTML：highlight.js One Light */
+.hljs {
+  color: #383a42;
+  background: var(--np-pre-bg);
+}
+
+.hljs-comment,
+.hljs-quote {
+  color: #a0a1a7;
+  font-style: italic;
+}
+
+.hljs-doctag,
+.hljs-keyword,
+.hljs-formula {
+  color: #a626a4;
+}
+
+.hljs-section,
+.hljs-name,
+.hljs-selector-tag,
+.hljs-deletion,
+.hljs-subst {
+  color: #e45649;
+}
+
+.hljs-literal {
+  color: #986801;
+}
+
+.hljs-string,
+.hljs-regexp,
+.hljs-addition,
+.hljs-attribute,
+.hljs-meta .hljs-string {
+  color: #50a14f;
+}
+
+.hljs-attr,
+.hljs-variable,
+.hljs-template-variable,
+.hljs-type,
+.hljs-selector-class,
+.hljs-selector-attr,
+.hljs-selector-pseudo,
+.hljs-number {
+  color: #986801;
+}
+
+.hljs-symbol,
+.hljs-bullet,
+.hljs-link,
+.hljs-meta,
+.hljs-selector-id,
+.hljs-title {
+  color: #4078f2;
+}
+
+.hljs-built_in,
+.hljs-title.class_,
+.hljs-class .hljs-title {
+  color: #c18401;
+}
+
+.hljs-emphasis {
+  font-style: italic;
+}
+
+.hljs-strong {
+  font-weight: bold;
+}
+
+.hljs-link {
+  text-decoration: underline;
+}
+
+/* —�?Mermaid / 图表：修复编辑时源码与预览重�?—�?*/
+/* 图表�?fence 外层不要统一 padding/border，否则会把源码区和预览区叠在一�?*/
+#write pre.md-fences[lang="mermaid"],
+#write pre.md-fences[lang="sequence"],
+#write pre.md-fences[lang="flow"],
+#write pre.md-fences[lang="graphviz"],
+#write pre.md-fences[lang="plantuml"],
+pre[mermaid-type] {
+  background: transparent !important;
+  border: none !important;
+  padding: 0 !important;
+  overflow: visible !important;
+}
+
+/* 源码区单独成�?*/
+#write pre.md-fences[lang="mermaid"] .CodeMirror,
+#write pre.md-fences[lang="sequence"] .CodeMirror,
+#write pre.md-fences[lang="flow"] .CodeMirror {
+  background: var(--np-pre-bg) !important;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 0;
+}
+
+/* 预览面板：透明底，无白底卡�?*/
+#write .md-diagram-panel,
+#write pre.md-fences .md-diagram-panel {
+  position: relative !important;
+  z-index: 1;
+  display: block !important;
+  clear: both;
+  float: none !important;
+  margin: 12px 0 0 !important;
+  padding: 12px 0 !important;
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  box-shadow: none !important;
+}
+
+#write pre.md-fences.md-focus .md-diagram-panel {
+  margin-top: 14px !important;
+}
+
+#write .md-diagram-panel-preview {
+  display: block !important;
+  overflow: visible !important;
+  text-align: center;
+  min-height: 0 !important;
+}
+
+/* 只约束最外层 SVG 宽度，勿改内部节点定位（否则 A/B/C 会叠在标签下�?*/
+#write .md-diagram-panel-preview>svg,
+#write .md-diagram-panel-preview svg:first-child,
+#write .md-diagram-panel svg {
+  max-width: 100%;
+  height: auto;
+  background: transparent !important;
+}
+
+/* —�?流程图节点：参考淡紫卡�?+ 直角 + 轻阴�?—�?*/
+#write .md-diagram-panel .node,
+#write .md-diagram-panel-preview .node {
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.1));
+}
+
+#write .md-diagram-panel .node rect,
+#write .md-diagram-panel .node polygon,
+#write .md-diagram-panel-preview .node rect,
+#write .md-diagram-panel-preview .node polygon {
+  fill: #ebebfd !important;
+  stroke: #a899d3 !important;
+  stroke-width: 1.25px !important;
+  rx: 0 !important;
+  ry: 0 !important;
+}
+
+#write .md-diagram-panel .node .label,
+#write .md-diagram-panel .nodeLabel,
+#write .md-diagram-panel .nodeLabel *,
+#write .md-diagram-panel-preview .node .label,
+#write .md-diagram-panel-preview .nodeLabel,
+#write .md-diagram-panel-preview .nodeLabel * {
+  color: #29323c !important;
+  fill: #29323c !important;
+  font-family: var(--np-sans) !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+/* 连线与箭�?*/
+#write .md-diagram-panel .edgePath .path,
+#write .md-diagram-panel .flowchart-link,
+#write .md-diagram-panel-preview .edgePath .path,
+#write .md-diagram-panel-preview .flowchart-link {
+  stroke: #4a4a4a !important;
+  stroke-width: 1.5px !important;
+  fill: none !important;
+}
+
+#write .md-diagram-panel .edgeLabel,
+#write .md-diagram-panel .edgeLabel *,
+#write .md-diagram-panel-preview .edgeLabel,
+#write .md-diagram-panel-preview .edgeLabel * {
+  background-color: transparent !important;
+  color: #57606a !important;
+  fill: #57606a !important;
+  font-family: var(--np-sans) !important;
+  font-size: 12px !important;
+}
+
+#write .md-diagram-panel marker path,
+#write .md-diagram-panel defs marker path,
+#write .md-diagram-panel-preview marker path {
+  fill: #4a4a4a !important;
+  stroke: #4a4a4a !important;
+}
+
+/* 集群 / 子图�?*/
+#write .md-diagram-panel .cluster rect,
+#write .md-diagram-panel-preview .cluster rect {
+  fill: #f8f8ff !important;
+  stroke: #c9c0e8 !important;
+  stroke-width: 1px !important;
+  rx: 0 !important;
+  ry: 0 !important;
+}
+
+#write .md-diagram-panel .cluster span,
+#write .md-diagram-panel .cluster .nodeLabel,
+#write .md-diagram-panel-preview .cluster span {
+  color: #57606a !important;
+  fill: #57606a !important;
+}
+
+/* 避免主题外链图标伪元素污�?Mermaid 内的 <a> */
+#write .md-diagram-panel a::after,
+#write .md-diagram-panel-preview a::after {
+  content: none !important;
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  margin: 0 !important;
+  background: none !important;
+}
+
+/* 图表 fence 不要显示右上角语言伪标签（预览态会叠在图上�?*/
+#write pre.md-fences[lang="mermaid"]:not(.md-focus)::after,
+#write pre.md-fences[lang="sequence"]:not(.md-focus)::after,
+#write pre.md-fences[lang="flow"]:not(.md-focus)::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* —�?代码语言标签（右上角）：加大字号、全程无白底 —�?*/
+#write pre.md-fences[lang]:not([lang=""]):not([lang="text"]):not([lang="plain"]):not([lang="txt"]):not(.md-focus)::after,
+#write pre.md-fences:not([lang]):not(.md-focus) .CodeMirror[lang]:not([lang=""]):not([lang="text"])::before {
+  content: attr(lang);
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  z-index: 6;
+  height: 28px;
+  padding: 0 8px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  background: transparent;
+  color: #a0a1a7;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 28px;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+  text-align: left;
+  pointer-events: none;
+  box-shadow: none;
+  box-sizing: border-box;
+}
+
+#write pre.md-fences.md-focus[lang]::after,
+#write pre.md-fences.md-focus .CodeMirror[lang]::before {
+  display: none !important;
+  content: none !important;
+}
+
+#write pre.md-fences .code-tooltip {
+  position: absolute !important;
+  top: 6px !important;
+  right: 8px !important;
+  bottom: auto !important;
+  left: auto !important;
+  z-index: 40 !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  height: 28px !important;
+  min-height: 28px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+#write pre.md-fences .code-tooltip .ty-input,
+#write pre.md-fences .code-tooltip input,
+#write pre.md-fences .ty-input,
+#write pre.md-fences input.ty-input,
+#write pre.md-fences .ty-cm-lang-input {
+  display: inline-block !important;
+  width: auto !important;
+  min-width: 3em !important;
+  max-width: 140px !important;
+  height: 28px !important;
+  margin: 0 !important;
+  padding: 0 8px !important;
+  border: 1px solid transparent !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  color: #a0a1a7 !important;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  line-height: 28px !important;
+  text-align: left !important;
+  text-transform: lowercase;
+  letter-spacing: 0.02em;
+  box-shadow: none !important;
+  outline: none !important;
+  caret-color: #526fff !important;
+  cursor: text;
+  box-sizing: border-box !important;
+  transition: color 0.12s ease;
+}
+
+#write pre.md-fences .code-tooltip .ty-input:hover,
+#write pre.md-fences .code-tooltip input:hover,
+#write pre.md-fences .ty-input:hover,
+#write pre.md-fences input.ty-input:hover {
+  color: #383a42 !important;
+  background: transparent !important;
+  border-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 聚焦/编辑：仍无白底，仅提亮文�?*/
+#write pre.md-fences .code-tooltip .ty-input:focus,
+#write pre.md-fences .code-tooltip input:focus,
+#write pre.md-fences .ty-input:focus,
+#write pre.md-fences input.ty-input:focus,
+#write pre.md-fences .ty-cm-lang-input:focus,
+#write pre.md-fences.md-focus .code-tooltip .ty-input,
+#write pre.md-fences.md-focus .code-tooltip input,
+#write pre.md-fences.md-focus .ty-input,
+#write pre.md-fences.md-focus input.ty-input,
+#write pre.md-fences.md-focus .ty-cm-lang-input {
+  height: 28px !important;
+  padding: 0 8px !important;
+  border: 1px solid transparent !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  color: #383a42 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+#write pre.md-fences .code-tooltip .ty-input::placeholder,
+#write pre.md-fences .code-tooltip input::placeholder {
+  color: #a0a1a7 !important;
+  font-size: 13px;
+  text-transform: none;
+  opacity: 1;
+}
+

@@ -1,0 +1,47 @@
+/* sujian/css/13-source.css — 源代码模式 */
+
+/* =============================================================
+ * 13. 源代码模式
+ * ============================================================= */
+#typora-source,
+.typora-source .CodeMirror {
+  background: var(--np-paper);
+  color: var(--text-color);
+  font-family: var(--monospace);
+}
+
+.typora-source .CodeMirror-lines {
+  max-width: 860px;
+  padding-top: 48px;
+}
+
+.cm-s-typora-default .cm-header {
+  color: var(--np-accent);
+  font-weight: 700;
+}
+
+.cm-s-typora-default .cm-string {
+  color: #1a7f37;
+}
+
+.cm-s-typora-default .cm-link {
+  color: var(--np-accent);
+}
+
+.cm-s-typora-default .cm-tag {
+  color: #8250df;
+}
+
+.cm-s-typora-default .cm-atom {
+  color: #9a6700;
+}
+
+.cm-s-typora-default .cm-comment {
+  color: #8c959f;
+}
+
+.typora-source .CodeMirror-activeline-background,
+.cm-s-typora-default .CodeMirror-activeline-background {
+  background: rgba(41, 50, 60, 0.06);
+}
+

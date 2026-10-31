@@ -1,0 +1,63 @@
+/* sujian/css/09-list.css — 列表与任务列表 */
+
+/* =============================================================
+ * 9. 列表 / 任务列表
+ * ============================================================= */
+#write ul,
+#write ol {
+  padding-left: 1.6em;
+}
+
+#write li {
+  margin: 0.3em 0;
+}
+
+#write ul>li::marker,
+#write ol>li::marker {
+  color: #8c959f;
+  font-weight: 500;
+}
+
+.md-task-list-item {
+  position: relative;
+  list-style-type: none;
+}
+
+.md-task-list-item>input {
+  appearance: none;
+  -webkit-appearance: none;
+  position: absolute;
+  top: 0.35em;
+  left: -1.5em;
+  width: 1em;
+  height: 1em;
+  margin: 0;
+  border: 1.5px solid var(--np-border);
+  border-radius: 4px;
+  background: var(--np-paper);
+  transition: all 0.15s ease;
+}
+
+.md-task-list-item>input:checked {
+  border-color: var(--np-accent);
+  background: var(--np-accent);
+}
+
+.md-task-list-item>input:checked::after {
+  content: "";
+  position: absolute;
+  left: 0.28em;
+  top: 0.1em;
+  width: 0.28em;
+  height: 0.55em;
+  border: solid #fff;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.md-task-list-item>input:checked~* {
+  color: var(--np-ink-soft);
+  text-decoration: line-through;
+  text-decoration-color: rgba(140, 149, 159, 0.6);
+}
+

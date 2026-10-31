@@ -1,0 +1,67 @@
+/* sujian/css/01-tokens-dark.css — 素笺暗色主题变量 */
+
+/* =============================================================
+ * 1. 暗色主题变量
+ *    深底墨纸 · 浅字阅读 · h2/h3 朱红装饰 · 代码块 One Dark Pro
+ * ============================================================= */
+:root {
+  --np-bg: #0f1216;
+  --np-paper: #161b22;
+  --np-sidebar: #0d1117;
+  --np-ink: #e6edf3;
+  --np-ink-soft: #9aa4b2;
+  --np-heading-accent: #1e80ff;
+  --np-code-fg: #ff7b72;
+  --np-accent: var(--np-ink);
+  --np-accent-soft: #21262d;
+  --np-border: #30363d;
+  --np-mark-bg: #5c4b1a;
+  --np-u-line: #6e7681;
+  --np-strong: #e6edf3;
+  --np-del: #6e7681;
+  --np-h3: #e6edf3;
+  --np-code-bg: rgba(110, 118, 129, 0.28);
+  --np-pre-bg: #282c34;
+  --np-th-bg: #21262d;
+  --np-tr-even: #1c2128;
+  --np-link-dash: #6e7681;
+  --np-link-hover: #e6edf3;
+  --np-serif: "Noto Serif SC", "Source Han Serif SC", "Source Han Serif CN",
+    "Songti SC", "STSong", "华文宋体", "SimSun", "NSimSun", Georgia,
+    "Times New Roman", serif;
+  --np-sans: "MiSans", "Segoe UI", "PingFang SC", "Microsoft YaHei",
+    "Helvetica Neue", Arial, sans-serif;
+  --np-radius: 10px;
+  --np-quote-radius: 12px;
+  --np-radius-item: 6px;
+  --np-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+  --np-caret: #e6edf3;
+
+  /* Typora 官方变量 */
+  --bg-color: var(--np-paper);
+  --side-bar-bg-color: var(--np-sidebar);
+  --text-color: var(--np-ink);
+  --title-color: var(--np-ink);
+  --primary-color: var(--np-ink);
+  --primary-btn-border-color: var(--np-ink);
+  --primary-btn-text-color: #0d1117;
+  --active-file-bg-color: var(--np-accent-soft);
+  --active-file-text-color: var(--np-ink);
+  --active-file-border-color: transparent;
+  --item-hover-bg-color: var(--np-accent-soft);
+  --item-hover-text-color: var(--np-ink);
+  --select-text-bg-color: rgba(56, 139, 253, 0.28);
+  --search-select-bg-color: rgba(56, 139, 253, 0.22);
+  --search-select-text-bg-color: rgba(56, 139, 253, 0.22);
+  --meta-content-color: var(--np-ink-soft);
+  --md-char-color: #6e7681;
+  --window-border: none;
+  --raw-window-border: none;
+  --control-text-color: var(--np-ink-soft);
+  --control-text-hover-color: var(--np-ink);
+  --monospace: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  --mermaid-theme: dark;
+  --mermaid-font-family: "MiSans", "Segoe UI", "PingFang SC", sans-serif;
+  --mermaid-flowchart-curve: linear;
+}

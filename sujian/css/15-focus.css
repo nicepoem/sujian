@@ -1,0 +1,11 @@
+/* sujian/css/15-focus.css — 专注模式 */
+
+/* =============================================================
+ * 15. 专注模式
+ * ============================================================= */
+.on-focus-mode #write .md-end-block:not(.md-focus):not(.md-focus-container) *,
+.on-focus-mode #write :not(.md-focus):not(.md-focus-container)>p * {
+  opacity: 0.32;
+  transition: opacity 0.3s ease;
+}
+

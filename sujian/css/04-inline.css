@@ -1,0 +1,95 @@
+/* sujian/css/04-inline.css — 行内文字 */
+
+/* =============================================================
+ * 4. 行内文字（strong / em / del / mark / u / code / a）
+ * ============================================================= */
+#write strong {
+  font-weight: 700;
+  color: #29323c;
+}
+
+#write em {
+  font-style: italic;
+  color: var(--np-ink-soft);
+}
+
+#write del {
+  text-decoration: line-through;
+  color: var(--np-del);
+}
+
+#write mark {
+  background: var(--np-mark-bg);
+  color: var(--np-ink);
+  padding: 0 0.25em;
+  border-radius: 4px;
+}
+
+#write u {
+  text-decoration: underline;
+  text-decoration-color: var(--np-u-line);
+  text-underline-offset: 3px;
+}
+
+/* 行内代码 — 颜色独立，不跟主题高亮色 */
+#write code,
+#write tt {
+  background: #afb8c133;
+  color: var(--np-code-fg);
+  padding: 0.1em 0.4em;
+  border-radius: 6px;
+  font-size: 0.95em;
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+  border: none;
+  box-shadow: none;
+}
+
+/* 代码块内的 code 不套用行内样式 */
+#write pre.md-fences code,
+#write pre code {
+  background: transparent;
+  color: inherit;
+  padding: 0;
+  border-radius: 0;
+  font-size: inherit;
+}
+
+#write kbd {
+  background: var(--np-bg);
+  border: 1px solid var(--np-border);
+  border-bottom-width: 2px;
+  border-radius: 6px;
+  padding: 0.1em 0.45em;
+  font-family: var(--monospace);
+  font-size: 0.88em;
+  color: var(--np-ink);
+}
+
+#write a,
+.md-link a {
+  color: var(--np-accent);
+  text-decoration: none;
+  border-bottom: 1px dashed var(--np-link-dash);
+}
+
+#write a:hover {
+  color: var(--np-link-hover);
+  border-bottom-style: solid;
+}
+
+/* 外链图标（对齐 guide a::after，仅 http 外链） */
+#write a[href^="http"]::after {
+  content: "";
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  margin-left: 3px;
+  vertical-align: -1px;
+  opacity: 0.75;
+  background: no-repeat center / contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2329323c' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6'/%3E%3Cpolyline points='15 3 21 3 21 9'/%3E%3Cline x1='10' y1='14' x2='21' y2='3'/%3E%3C/svg%3E");
+}
+
+#write a[href^="http"]:hover::after {
+  opacity: 1;
+}
+

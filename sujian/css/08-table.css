@@ -1,0 +1,493 @@
+/* sujian/css/08-table.css — 表格 */
+
+/* =============================================================
+ * 8. 表格
+ * ============================================================= */
+/* 勿用 overflow:auto —— 会裁切上方工具栏，造成「折叠」压住表头 */
+#write figure.md-table-fig,
+#write .md-table-fig,
+#write figure[mdtype="table"] {
+  overflow: visible !important;
+  position: relative;
+  margin: 1.1em 0;
+  padding-top: 0;
+  padding-bottom: 4px;
+}
+
+/* 仅编辑/聚焦时预留工具栏高度，避免正文与表格之间常驻大空白 */
+#write figure.md-table-fig:has(.md-table-edit),
+#write figure.md-table-fig:has(.ty-table-edit),
+#write .md-table-fig:has(.md-table-edit),
+#write .md-table-fig:has(.ty-table-edit),
+#write figure.md-table-fig.md-focus,
+#write .md-table-fig.md-focus,
+#write figure[mdtype="table"].md-focus {
+  padding-top: 52px !important;
+}
+
+/* 紧跟段落时收紧上边距，避免文字与表之间空隙偏大 */
+#write p+figure.md-table-fig,
+#write p+.md-table-fig,
+#write p+figure[mdtype="table"] {
+  margin-top: 0.55em;
+}
+
+#write table:not(.md-grid-board),
+figure.md-table-fig table:not(.md-grid-board),
+.md-table-fig table:not(.md-grid-board) {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  background: var(--np-paper);
+  border: none;
+  box-shadow: none;
+}
+
+#write table:not(.md-grid-board) th,
+#write table:not(.md-grid-board) td {
+  border: 1px solid var(--np-border);
+  padding: 0.6em 1em;
+  text-align: left;
+}
+
+#write table:not(.md-grid-board) th {
+  background: var(--np-th-bg);
+  font-weight: 600;
+  color: var(--np-ink);
+}
+
+#write table:not(.md-grid-board) tr:nth-child(even) td {
+  background: var(--np-tr-even);
+}
+
+/* —— 表格浮动工具栏：贴在预留顶距内，明确离开表头 —— */
+.md-table-edit,
+.ty-table-edit {
+  position: absolute !important;
+  top: 6px !important;
+  left: 0 !important;
+  z-index: 60;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 2px;
+  margin: 0 !important;
+  padding: 4px !important;
+  background: #ffffff !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 14px rgba(31, 35, 40, 0.08) !important;
+}
+
+.md-table-edit .btn,
+.ty-table-edit .btn,
+.md-table-edit a,
+.ty-table-edit a,
+.md-table-edit button,
+.ty-table-edit button {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 7px !important;
+  background: transparent !important;
+  color: var(--np-ink-soft) !important;
+  box-shadow: none !important;
+  line-height: 1 !important;
+  overflow: hidden;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.md-table-edit .btn:hover,
+.ty-table-edit .btn:hover,
+.md-table-edit a:hover,
+.ty-table-edit a:hover,
+.md-table-edit button:hover,
+.ty-table-edit button:hover {
+  background: var(--np-accent-soft) !important;
+  color: var(--np-accent) !important;
+  border: none !important;
+}
+
+.md-table-edit .btn.active,
+.ty-table-edit .btn.active,
+.md-table-edit .btn:active,
+.ty-table-edit .btn:active,
+.md-table-edit a.active,
+.ty-table-edit a.active,
+.md-table-edit .md-active,
+.ty-table-edit .md-active {
+  background: var(--np-accent-soft) !important;
+  color: var(--np-accent) !important;
+}
+
+/* 右侧：更多 / 删除 —— 与左侧同高，不压表头 */
+.md-tooltip-remove {
+  position: absolute !important;
+  top: 6px !important;
+  right: 0 !important;
+  left: auto !important;
+  z-index: 61;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 2px;
+  margin: 0 !important;
+  padding: 4px !important;
+  background: #ffffff !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: 10px !important;
+  box-shadow: 0 4px 14px rgba(31, 35, 40, 0.08) !important;
+}
+
+.md-tooltip-remove .btn,
+.md-tooltip-remove a,
+.md-tooltip-remove button,
+.md-tooltip-remove .md-delete-table {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  width: 28px !important;
+  height: 28px !important;
+  min-width: 28px !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: none !important;
+  border-radius: 7px !important;
+  background: transparent !important;
+  color: var(--np-ink-soft) !important;
+  box-shadow: none !important;
+  overflow: hidden;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.md-tooltip-remove .btn:hover,
+.md-tooltip-remove a:hover,
+.md-tooltip-remove button:hover {
+  background: var(--np-accent-soft) !important;
+  color: var(--np-accent) !important;
+}
+
+.md-tooltip-remove .md-delete-table:hover,
+.md-tooltip-remove .btn.md-delete-table:hover {
+  background: #eaeef2 !important;
+  color: #29323c !important;
+}
+
+/* 工具条只显示图标，隐藏旁路文字（如「更多操作」） */
+.md-table-edit,
+.ty-table-edit,
+.md-tooltip-remove {
+  font-size: 0 !important;
+  line-height: 0 !important;
+}
+
+.md-table-edit .fa,
+.ty-table-edit .fa,
+.md-tooltip-remove .fa,
+.md-table-edit i,
+.ty-table-edit i,
+.md-tooltip-remove i,
+.md-table-edit svg,
+.ty-table-edit svg,
+.md-tooltip-remove svg {
+  font-size: 14px !important;
+  line-height: 1 !important;
+  width: 14px;
+  height: 14px;
+}
+
+/* 「更多操作」：长方形小圆角按钮，完整显示文字 */
+.md-table-more,
+.ty-table-edit .md-table-more,
+.md-table-edit .md-table-more,
+.md-tooltip-remove .md-table-more,
+.md-table-edit .btn.md-table-more,
+.ty-table-edit .btn.md-table-more,
+.md-table-edit a.md-table-more,
+.ty-table-edit a.md-table-more {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px !important;
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  height: 28px !important;
+  padding: 0 10px !important;
+  overflow: visible !important;
+  white-space: nowrap !important;
+  border: none !important;
+  border-radius: 6px !important;
+  background: transparent !important;
+  color: var(--np-ink-soft) !important;
+  font-size: 12px !important;
+  line-height: 28px !important;
+  box-sizing: border-box !important;
+}
+
+.md-table-more-label,
+.md-table-more:hover .md-table-more-label,
+.md-table-more:focus .md-table-more-label,
+.ty-table-edit .md-table-more .md-table-more-label,
+.md-table-edit .md-table-more .md-table-more-label {
+  display: inline !important;
+  width: auto !important;
+  height: auto !important;
+  overflow: visible !important;
+  visibility: visible !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 28px !important;
+  letter-spacing: 0.02em;
+  color: inherit !important;
+  white-space: nowrap !important;
+}
+
+.md-table-more:hover,
+.md-table-more:focus,
+.ty-table-edit .md-table-more:hover,
+.ty-table-edit .md-table-more:focus,
+.md-table-edit .md-table-more:hover,
+.md-table-edit .md-table-more:focus {
+  width: auto !important;
+  max-width: none !important;
+  background: #eaeef2 !important;
+  color: var(--np-accent) !important;
+  border: none !important;
+  outline: none !important;
+  border-radius: 6px !important;
+}
+
+.md-table-more .fa,
+.md-table-more i,
+.md-table-more .ty-icon {
+  font-size: 14px !important;
+  line-height: 1 !important;
+  display: inline-block !important;
+  flex-shrink: 0;
+}
+
+/* 调整行列数网格：大号实心方格，弹层贴合内容不显空 */
+.md-table-resize-popover {
+  min-width: 0 !important;
+  max-width: none !important;
+  width: max-content !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: 12px !important;
+  background: #ffffff !important;
+  box-shadow: 0 8px 28px rgba(31, 35, 40, 0.12) !important;
+  padding: 10px !important;
+  overflow: visible !important;
+}
+
+.md-table-resize-popover .md-reset>a::before {
+  display: none !important;
+}
+
+.md-grid-board-wrap {
+  width: max-content !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  text-align: center !important;
+  border-radius: 0 !important;
+  overflow: visible !important;
+  background: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+  box-sizing: border-box !important;
+}
+
+.md-grid-board-wrap table.md-grid-board,
+table.md-grid-board {
+  width: auto !important;
+  max-width: none !important;
+  margin: 0 auto !important;
+  padding: 6px !important;
+  border: 1px solid #eaeef2 !important;
+  border-collapse: separate !important;
+  border-spacing: 4px !important;
+  border-radius: 8px !important;
+  background: #f6f8fa !important;
+  box-shadow: none !important;
+  font-size: 0 !important;
+}
+
+.md-grid-board-wrap table.md-grid-board tr,
+table.md-grid-board tr {
+  background: transparent !important;
+}
+
+.md-grid-board-wrap table.md-grid-board th,
+.md-grid-board-wrap table.md-grid-board td,
+table.md-grid-board th,
+table.md-grid-board td {
+  width: 22px !important;
+  min-width: 22px !important;
+  max-width: 22px !important;
+  height: 22px !important;
+  min-height: 22px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  vertical-align: middle !important;
+  text-align: center !important;
+  line-height: 0 !important;
+}
+
+/* 格子：大号正方形，浅底描边 */
+.md-grid-board a {
+  display: block !important;
+  box-sizing: border-box !important;
+  width: 20px !important;
+  min-width: 20px !important;
+  max-width: 20px !important;
+  height: 20px !important;
+  min-height: 20px !important;
+  max-height: 20px !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+  border: 1px solid #d0d7de !important;
+  border-radius: 4px !important;
+  background: #ffffff !important;
+  aspect-ratio: 1 / 1 !important;
+  box-shadow: inset 0 0 0 0 transparent;
+  transition: background 0.08s ease, border-color 0.08s ease, box-shadow 0.08s ease;
+}
+
+.md-grid-board a:hover {
+  border-color: #29323c !important;
+  background: #eaeef2 !important;
+  box-shadow: inset 0 0 0 1px rgba(41, 50, 60, 0.15);
+}
+
+/* 表头行：略深，区分列头 */
+.md-grid-board tr[row="1"] {
+  background: transparent !important;
+}
+
+.md-grid-board tr[row="1"] a {
+  background: #eaeef2 !important;
+  border-color: #afb8c1 !important;
+}
+
+.md-grid-board tr[row="1"] a:hover {
+  background: #eaeef2 !important;
+  border-color: #29323c !important;
+}
+
+/* 扩展预览区 */
+.md-grid-board .md-grid-ext {
+  background: #eaeef2 !important;
+  border-color: #c9d1d9 !important;
+}
+
+.md-grid-board tr[row="1"] .md-grid-ext {
+  background: #d0d7de !important;
+  border-color: #afb8c1 !important;
+}
+
+/* 选中：实心蓝块，形成完整表格预览 */
+.md-grid-board a.md-active,
+.md-grid-board td.md-active a,
+.md-grid-board .md-grid-ext.md-active {
+  background: #29323c !important;
+  border-color: #1f2328 !important;
+  box-shadow: none !important;
+}
+
+.md-grid-board tr[row="1"] a.md-active {
+  background: #1f2328 !important;
+  border-color: #1f2328 !important;
+}
+
+.md-grid-board a.md-active:hover,
+.md-grid-board tr[row="1"] a.md-active:hover {
+  background: #29323c !important;
+  border-color: #1f2328 !important;
+}
+
+/* 下方：输入框 + 确定 同一行居中对齐 */
+.md-grid-board-wrap .popover-title,
+.md-grid-board-wrap>div,
+.md-table-resize-popover .popover-title {
+  display: flex !important;
+  flex-wrap: nowrap !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 6px !important;
+  width: 100% !important;
+  margin: 8px 0 0 !important;
+  padding: 8px 0 0 !important;
+  border-top: 1px solid var(--np-border) !important;
+  border-bottom: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  text-align: center !important;
+  font-size: 12px !important;
+  color: var(--np-ink-soft) !important;
+  box-sizing: border-box !important;
+}
+
+#md-grid-width,
+#md-grid-height {
+  display: inline-block !important;
+  flex: 0 0 auto !important;
+  width: 2.4em !important;
+  min-width: 2.4em !important;
+  height: 28px !important;
+  margin: 0 !important;
+  padding: 0 4px !important;
+  text-align: center !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: 6px !important;
+  background: #ffffff !important;
+  color: var(--np-ink) !important;
+  font-size: 12px !important;
+  line-height: 26px !important;
+  box-shadow: none !important;
+  vertical-align: middle !important;
+  box-sizing: border-box !important;
+}
+
+.md-grid-board-wrap #md-grid-width,
+.md-grid-board-wrap #md-grid-height {
+  text-align: center !important;
+}
+
+button#md-resize-grid {
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  flex: 0 0 auto !important;
+  float: none !important;
+  width: auto !important;
+  min-width: 56px !important;
+  height: 28px !important;
+  margin: 0 0 0 4px !important;
+  padding: 0 12px !important;
+  border-radius: 6px !important;
+  background: var(--np-accent) !important;
+  border: 1px solid var(--np-accent) !important;
+  color: #ffffff !important;
+  font-family: "MiSans", "Segoe UI", sans-serif !important;
+  font-size: 12px !important;
+  line-height: 1 !important;
+  white-space: nowrap !important;
+  box-sizing: border-box !important;
+  vertical-align: middle !important;
+}
+
+button#md-resize-grid:hover {
+  background: var(--np-link-hover) !important;
+  border-color: var(--np-link-hover) !important;
+  color: #ffffff !important;
+}
+

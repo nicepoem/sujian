@@ -1,0 +1,917 @@
+/* sujian/css/14-ui.css — 偏好设置 / tooltip / 工具栏等 UI */
+
+/* =============================================================
+ * 14. UI 控件
+ * ============================================================= */
+.btn,
+button.btn,
+.long-btn {
+  border-radius: 8px !important;
+  background: var(--np-paper) !important;
+  border: 1px solid var(--np-border) !important;
+  box-shadow: none !important;
+  color: var(--np-ink) !important;
+  font-family: "MiSans", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif !important;
+  font-weight: 500 !important;
+  min-height: 34px;
+  padding: 6px 16px !important;
+  transition: background 0.12s ease, border-color 0.12s ease, color 0.12s ease;
+}
+
+.btn:hover,
+button.btn:hover,
+.long-btn:hover {
+  background: var(--np-accent-soft) !important;
+  border-color: color-mix(in srgb, var(--np-ink) 28%, var(--np-border)) !important;
+  color: var(--np-ink) !important;
+}
+
+/* 须压过 button.btn 的更高优先级，否则主按钮白底 + 白字不可见 */
+.btn-primary,
+button.btn.btn-primary,
+.btn.btn-primary,
+.btn-primary:hover,
+button.btn.btn-primary:hover,
+.btn.btn-primary:hover {
+  background: var(--np-ink) !important;
+  border-color: var(--np-ink) !important;
+  color: #ffffff !important;
+}
+
+input[type="text"],
+input[type="search"],
+input[type="number"],
+textarea,
+select {
+  border-radius: var(--np-radius-item);
+  border: 1px solid var(--np-border);
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--np-accent);
+  box-shadow: 0 0 0 3px rgba(41, 50, 60, 0.15);
+  outline: none;
+}
+
+/* —— 通用弹窗（保存确认 / 警告等） —— */
+.modal-backdrop,
+.modal-backdrop.in {
+  background: rgba(31, 35, 40, 0.28) !important;
+  opacity: 1 !important;
+}
+
+.modal-dialog {
+  margin-top: 12vh !important;
+}
+
+.modal-content,
+#common-dialog .modal-content {
+  border: 1px solid var(--np-border) !important;
+  border-radius: 14px !important;
+  background: var(--np-paper) !important;
+  box-shadow:
+    0 12px 40px rgba(31, 35, 40, 0.14),
+    0 2px 8px rgba(31, 35, 40, 0.06) !important;
+  overflow: hidden;
+  font-family: "MiSans", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+.modal-header,
+#common-dialog .modal-header {
+  border: none !important;
+  border-bottom: none !important;
+  padding: 18px 22px 10px !important;
+  background: transparent !important;
+}
+
+.modal-header .modal-title,
+#common-dialog .modal-header .modal-title,
+#common-dialog .modal-title {
+  font-family: "MiSans", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif !important;
+  font-size: 16px !important;
+  font-weight: 650 !important;
+  color: var(--np-ink) !important;
+  letter-spacing: 0.02em;
+}
+
+.modal-body,
+#common-dialog .modal-body {
+  padding: 12px 22px 8px !important;
+  color: var(--np-ink-soft) !important;
+  font-size: 13.5px !important;
+  line-height: 1.65 !important;
+}
+
+#common-dialog-text,
+#common-dialog-message {
+  color: var(--np-ink) !important;
+  font-size: 14px !important;
+  line-height: 1.65 !important;
+}
+
+.modal-footer,
+#common-dialog .modal-footer {
+  border: none !important;
+  border-top: none !important;
+  padding: 14px 18px 16px !important;
+  background: #f7f8fa !important;
+  display: flex !important;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+#common-dialog .modal-footer .btn,
+.modal-footer .btn {
+  float: none !important;
+  min-width: 72px;
+  margin: 0 !important;
+}
+
+/* 三按钮确认：保存 / 丢弃 左组，取消靠右 */
+#common-dialog.ty-three-way-buttons .btn:last-child {
+  margin-left: auto !important;
+}
+
+.dropdown-menu,
+.context-menu {
+  border: 1px solid var(--np-border) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 30px rgba(31, 35, 40, 0.12) !important;
+  overflow: hidden !important;
+  padding: 6px !important;
+  background: var(--np-paper) !important;
+}
+
+.dropdown-menu>li>a,
+.dropdown-menu>.active>a,
+.context-menu .menu-item-container a,
+.context-menu a.menu-item {
+  border-radius: 6px !important;
+}
+
+.dropdown-menu>li>a:hover,
+.dropdown-menu>.active>a,
+.dropdown-menu>.active>a:hover,
+.context-menu .menu-item-container a:hover,
+.context-menu a.menu-item:hover,
+.context-menu>.active a {
+  background: var(--np-accent-soft) !important;
+  color: var(--np-accent) !important;
+}
+
+/* ---------- preferences: shell ---------- */
+/* —— 偏好设置（后台） —— */
+html.ty-preferences,
+body.ty-preferences,
+.ty-preferences {
+  --item-hover-bg-color: var(--np-accent-soft);
+  --item-hover-text-color: var(--np-accent);
+  --active-file-bg-color: var(--np-accent-soft);
+  --active-file-text-color: var(--np-accent);
+  --side-bar-bg-color: #ffffff;
+  --bg-color: #f2f4f7;
+  font-family: "MiSans", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+  color: var(--np-ink);
+  background: #f2f4f7 !important;
+}
+
+body.ty-preferences .window,
+.ty-preferences .window {
+  background: #f2f4f7 !important;
+}
+
+body.ty-preferences .window-header,
+body.ty-preferences header.toolbar,
+body.ty-preferences .toolbar-header,
+.ty-preferences .window-header,
+.ty-preferences header {
+  background: var(--np-paper) !important;
+  border-bottom: 1px solid var(--np-border) !important;
+  box-shadow: none !important;
+}
+
+body.ty-preferences .window-header h2,
+body.ty-preferences .window-title,
+.ty-preferences .window-header h2,
+.ty-preferences .window-header .window-title {
+  color: var(--np-ink) !important;
+  font-weight: 650 !important;
+  font-size: 15px !important;
+  letter-spacing: 0.04em;
+}
+
+body.ty-preferences .window-content,
+.ty-preferences .window-content {
+  background: #f2f4f7 !important;
+  padding: 16px 18px !important;
+}
+
+body.ty-preferences .pane-group,
+.ty-preferences .pane-group {
+  background: transparent !important;
+}
+
+/* 左侧主分类：扁平，无背景/阴影/圆角 */
+body.ty-preferences .sidebar,
+body.ty-preferences .pane-sm.sidebar,
+.ty-preferences .sidebar,
+.ty-preferences .window-content .sidebar,
+.ty-preferences .nav-group-container {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 10px 8px 12px !important;
+}
+
+body.ty-preferences .sidebar::after,
+.ty-preferences .sidebar::after {
+  display: none !important;
+}
+
+body.ty-preferences .search-input,
+body.ty-preferences .sidebar .search-input,
+.ty-preferences .sidebar .search-input,
+.ty-preferences .search-input,
+.ty-preferences input[type="search"],
+.ty-preferences input.search-input {
+  width: calc(100% - 8px) !important;
+  margin: 4px !important;
+  padding: 8px 12px !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: 8px !important;
+  background: #f6f8fa !important;
+  color: var(--np-ink) !important;
+  font-size: 13px !important;
+  box-shadow: none !important;
+}
+
+body.ty-preferences .search-input:focus,
+.ty-preferences .sidebar .search-input:focus,
+.ty-preferences .search-input:focus {
+  border-color: var(--np-accent) !important;
+  background: var(--np-paper) !important;
+  box-shadow: 0 0 0 3px rgba(41, 50, 60, 0.12) !important;
+  outline: none !important;
+}
+
+/* 导航项：灰底 + 强调色字（覆盖 Photon 默认蓝） */
+body.ty-preferences .nav-group-item,
+.ty-preferences .nav-group-item,
+.window .nav-group-item,
+.nav-group-item {
+  margin: 3px 4px !important;
+  padding: 9px 14px !important;
+  border-radius: 8px !important;
+  border: none !important;
+  color: var(--np-ink) !important;
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+body.ty-preferences .nav-group-item:hover,
+.ty-preferences .nav-group-item:hover,
+.window .nav-group-item:hover,
+.nav-group-item:hover {
+  background: var(--np-accent-soft) !important;
+  background-color: #eaeef2 !important;
+  color: var(--np-accent) !important;
+}
+
+body.ty-preferences .nav-group-item.active,
+body.ty-preferences .nav-group-item:active,
+.ty-preferences .nav-group-item.active,
+.ty-preferences .nav-group-item:active,
+.window .nav-group-item.active,
+.nav-group-item.active,
+.nav-group-item.active:hover {
+  background: var(--np-accent-soft) !important;
+  background-color: #eaeef2 !important;
+  background-image: none !important;
+  color: var(--np-accent) !important;
+  font-weight: 400 !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+/* 导出等二级列表 */
+body.ty-preferences .export-item,
+.ty-preferences .export-item,
+.export-item {
+  margin: 2px 4px !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  color: var(--np-ink) !important;
+  border: none !important;
+  background: transparent !important;
+  background-color: transparent !important;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+
+body.ty-preferences .export-item:hover,
+.export-item:hover {
+  background: var(--np-accent-soft) !important;
+  background-color: #eaeef2 !important;
+  color: var(--np-accent) !important;
+}
+
+body.ty-preferences .export-item.active,
+.ty-preferences .export-item.active,
+.export-item.active,
+.export-item.active:hover {
+  background: var(--np-accent-soft) !important;
+  background-color: #eaeef2 !important;
+  color: var(--np-accent) !important;
+  font-weight: 600 !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* 右侧内容卡片 */
+body.ty-preferences .pane:not(.sidebar),
+.ty-preferences .pane:not(.sidebar) {
+  background: transparent !important;
+  padding-left: 16px !important;
+  overflow: visible !important;
+}
+
+/* 内容区容器：去掉外层卡片，避免与控件双边框 */
+body.ty-preferences .export-detail,
+.ty-preferences .export-detail,
+.export-detail,
+body.ty-preferences .preference-content,
+.ty-preferences .preference-content,
+.ty-preferences .pane>section,
+body.ty-preferences .label-input-group,
+.ty-preferences .label-input-group,
+body.ty-preferences .label-input-group>div,
+.ty-preferences .label-input-group>div,
+body.ty-preferences .input-group-content,
+.ty-preferences .input-group-content,
+.input-group-content,
+body.ty-preferences .input-group,
+.ty-preferences .input-group {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  outline: none !important;
+  color: var(--np-ink) !important;
+}
+
+body.ty-preferences .export-detail,
+.ty-preferences .export-detail,
+.export-detail {
+  padding: 0 !important;
+}
+
+body.ty-preferences h1,
+body.ty-preferences .pane>h1,
+.ty-preferences h1,
+.ty-preferences h2.pane-title,
+.ty-preferences .pane h2 {
+  color: var(--np-ink) !important;
+  font-weight: 700 !important;
+  font-size: 22px !important;
+  letter-spacing: 0.02em;
+  margin: 4px 0 18px !important;
+  border: none !important;
+  background: transparent !important;
+}
+
+body.ty-preferences label,
+body.ty-preferences .label-name,
+.ty-preferences label,
+.ty-preferences .label-name {
+  color: var(--np-ink) !important;
+  font-weight: 550 !important;
+  font-size: 13px !important;
+}
+
+body.ty-preferences input[type="text"],
+body.ty-preferences input[type="number"],
+body.ty-preferences .file-input input,
+.ty-preferences input[type="text"],
+.ty-preferences input[type="number"],
+.ty-preferences .file-input input,
+.export-detail .file-input input {
+  height: 32px !important;
+  padding: 0 10px !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: 8px !important;
+  background: var(--np-paper) !important;
+  color: var(--np-ink) !important;
+  font-size: 13px !important;
+  box-shadow: none !important;
+}
+
+/* select：保留边框/高度，用系统箭头（自定义箭头在窄控件上会变成孤立三角） */
+body.ty-preferences select,
+.ty-preferences select,
+.export-detail select {
+  height: 32px !important;
+  min-height: 32px !important;
+  max-height: 32px !important;
+  padding: 0 8px !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: 6px !important;
+  background: var(--np-paper) !important;
+  background-image: none !important;
+  color: var(--np-ink) !important;
+  font-size: 13px !important;
+  line-height: 30px !important;
+  box-shadow: none !important;
+  outline: none !important;
+  -webkit-appearance: menulist !important;
+  appearance: auto !important;
+  vertical-align: middle !important;
+}
+
+body.ty-preferences select option,
+.ty-preferences select option,
+.export-detail select option {
+  background: var(--np-paper) !important;
+  color: var(--np-ink) !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+}
+
+body.ty-preferences input[type="text"]:focus,
+body.ty-preferences input[type="number"]:focus,
+.ty-preferences input[type="text"]:focus,
+.ty-preferences input[type="number"]:focus,
+.export-detail .file-input input:focus {
+  border-color: var(--np-accent) !important;
+  box-shadow: 0 0 0 3px rgba(41, 50, 60, 0.12) !important;
+  outline: none !important;
+}
+
+/* select 聚焦只用边框，不用外圈阴影（会压住系统下拉首项） */
+body.ty-preferences select:focus,
+.ty-preferences select:focus,
+.export-detail select:focus {
+  border-color: var(--np-accent) !important;
+  box-shadow: none !important;
+  outline: none !important;
+}
+
+body.ty-preferences input[type="checkbox"],
+.ty-preferences input[type="checkbox"] {
+  accent-color: var(--np-accent);
+}
+
+body.ty-preferences a,
+.ty-preferences a {
+  color: var(--np-accent) !important;
+  font-size: 12px !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+body.ty-preferences a:hover,
+.ty-preferences a:hover {
+  color: var(--np-link-hover) !important;
+  text-decoration: underline !important;
+}
+
+body.ty-preferences .btn,
+body.ty-preferences button.btn,
+.ty-preferences .btn,
+.ty-preferences button.btn {
+  border-radius: 6px !important;
+  background: var(--np-accent-soft) !important;
+  border: 1px solid var(--np-border) !important;
+  color: var(--np-ink) !important;
+  box-shadow: none !important;
+}
+
+body.ty-preferences .btn:hover,
+.ty-preferences .btn:hover,
+.ty-preferences button.btn:hover {
+  background: var(--np-accent-soft) !important;
+  border-color: var(--np-accent) !important;
+  color: var(--np-accent) !important;
+}
+
+body.ty-preferences .btn-primary,
+.ty-preferences .btn-primary {
+  background: var(--np-accent) !important;
+  border-color: var(--np-accent) !important;
+  color: #ffffff !important;
+}
+
+/* 重置 + 箭头：Typora 用 .btn-split-*，不是 bootstrap dropdown-toggle */
+body.ty-preferences .btn-split-group,
+.ty-preferences .btn-split-group,
+html.ty-preferences .btn-split-group {
+  display: inline-flex !important;
+  align-items: center !important;
+  vertical-align: middle !important;
+  margin-left: 6px !important;
+  position: relative !important;
+}
+
+body.ty-preferences .btn-split-left,
+.ty-preferences .btn-split-left,
+html.ty-preferences .btn-split-left,
+body.ty-preferences .btn.btn-split-left,
+.ty-preferences .btn.btn-split-left {
+  height: 32px !important;
+  line-height: 30px !important;
+  padding: 0 12px !important;
+  margin: 0 !important;
+  border-radius: 6px 0 0 6px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+
+/* 箭头：正方形圆角（覆盖原 padding:1px 造成的细长条） */
+body.ty-preferences .btn-split-right,
+.ty-preferences .btn-split-right,
+html.ty-preferences .btn-split-right,
+body.ty-preferences .btn.btn-split-right,
+.ty-preferences .btn.btn-split-right {
+  width: 32px !important;
+  min-width: 32px !important;
+  max-width: 32px !important;
+  height: 32px !important;
+  min-height: 32px !important;
+  margin: 0 0 0 -1px !important;
+  padding: 0 !important;
+  box-sizing: border-box !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 0 6px 6px 0 !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 6px !important;
+  border-bottom-right-radius: 6px !important;
+}
+
+body.ty-preferences .btn-split-right .icon,
+body.ty-preferences .btn-split-right .caret,
+.ty-preferences .btn-split-right .icon,
+.ty-preferences .btn-split-right .caret {
+  margin: 0 !important;
+  float: none !important;
+  color: #8c959f !important;
+}
+
+/* 展开菜单：圆角白底；选项本身也要圆角（菜单项是 li，不是 a） */
+body.ty-preferences .dropdown-menu,
+.ty-preferences .dropdown-menu,
+html.ty-preferences .dropdown-menu,
+body.ty-preferences .btn-split-group .dropdown-menu,
+.ty-preferences .btn-split-group .dropdown-menu {
+  border-radius: 8px !important;
+  background: var(--np-paper) !important;
+  border: 1px solid var(--np-border) !important;
+  box-shadow: 0 8px 24px rgba(31, 35, 40, 0.12) !important;
+  overflow: hidden !important;
+  padding: 6px !important;
+  margin-top: 4px !important;
+}
+
+body.ty-preferences .dropdown-menu li,
+.ty-preferences .dropdown-menu li,
+html.ty-preferences .dropdown-menu li {
+  list-style: none !important;
+  margin: 2px 0 !important;
+  padding: 6px 12px !important;
+  border-radius: 6px !important;
+  color: var(--np-ink) !important;
+  background: transparent !important;
+}
+
+body.ty-preferences .dropdown-menu li:hover,
+.ty-preferences .dropdown-menu li:hover,
+html.ty-preferences .dropdown-menu li:hover {
+  background: var(--np-accent-soft) !important;
+  color: var(--np-accent) !important;
+  border-radius: 6px !important;
+}
+
+/* 二级列表底部工具条 */
+body.ty-preferences .export-items-list-control,
+.ty-preferences .list-control,
+.export-items-list-control {
+  background: #f6f8fa !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: 8px !important;
+  padding: 4px !important;
+  margin-top: 6px !important;
+}
+
+body.ty-preferences .export-items-list-control .btn,
+.export-items-list-control .btn {
+  background: transparent !important;
+  border: none !important;
+  color: var(--np-ink-soft) !important;
+  border-radius: 6px !important;
+}
+
+body.ty-preferences .export-items-list-control .btn:hover,
+.export-items-list-control .btn:hover {
+  background: var(--np-accent-soft) !important;
+  color: var(--np-accent) !important;
+}
+
+/* 表单行间距 */
+body.ty-preferences .row,
+.ty-preferences .preference-item,
+.export-detail .row {
+  margin-bottom: 14px !important;
+}
+
+/* 只去掉容器双边框，不清 padding（否则 PDF「mm」会贴进输入框） */
+body.ty-preferences .input-group table,
+.ty-preferences .input-group table,
+body.ty-preferences .input-group-content table,
+.ty-preferences .input-group-content table {
+  margin: 0 !important;
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+body.ty-preferences .label-input-group>div,
+.ty-preferences .label-input-group>div {
+  border: none !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* 仅控件本身保留单层边框；select 圆角与上式一致，避免再被盖回 8px */
+body.ty-preferences .label-input-group input,
+body.ty-preferences .input-group-content input,
+.ty-preferences .label-input-group input {
+  border: 1px solid var(--np-border) !important;
+  border-radius: 8px !important;
+  background: var(--np-paper) !important;
+}
+
+body.ty-preferences .label-input-group select,
+body.ty-preferences .input-group-content select,
+.ty-preferences .label-input-group select {
+  border: 1px solid var(--np-border) !important;
+  border-radius: 6px !important;
+  background: var(--np-paper) !important;
+  background-image: none !important;
+}
+
+/* 字数统计旁紧凑下拉：保证可读，避免只剩箭头 */
+body.ty-preferences select:not([multiple]),
+.ty-preferences select:not([multiple]) {
+  min-width: 2.75em !important;
+}
+
+body.ty-preferences .btn+select,
+.ty-preferences .btn+select,
+body.ty-preferences button+select,
+.ty-preferences button+select {
+  margin-left: 6px !important;
+  min-width: 3.5em !important;
+}
+
+/* 表单容器勿裁切下拉；行间距拉开避免两个 select 视觉粘连 */
+body.ty-preferences .label-input-group,
+body.ty-preferences .input-group-content,
+.ty-preferences .label-input-group,
+.ty-preferences .input-group-content {
+  overflow: visible !important;
+}
+
+body.ty-preferences .label-input-group table tr+tr td,
+.ty-preferences .label-input-group table tr+tr td,
+body.ty-preferences .input-group-content table tr+tr td,
+.ty-preferences .input-group-content table tr+tr td {
+  padding-top: 10px !important;
+}
+
+/* 缩进预览等：只保留浅底圆角，去掉黑/深色描边 */
+body.ty-preferences pre,
+.ty-preferences pre,
+body.ty-preferences .label-input-group div pre,
+.ty-preferences .label-input-group div pre,
+body.ty-preferences .label-input-group>div,
+.ty-preferences .label-input-group>div {
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+body.ty-preferences .label-input-group div pre,
+.ty-preferences .label-input-group div pre,
+body.ty-preferences pre,
+.ty-preferences pre {
+  border-radius: 0 !important;
+  background: transparent !important;
+  font-size: 13px !important;
+  margin-top: 6px !important;
+  padding: 0 !important;
+}
+
+body.ty-preferences fieldset,
+.ty-preferences fieldset {
+  border: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* ---------- preferences: export ---------- */
+/* —— PDF / 导出详情：宽高数字与页眉页尾下拉 —— */
+body.ty-preferences .export-detail input[type="number"],
+.ty-preferences .export-detail input[type="number"],
+.export-detail input[type="number"] {
+  display: inline-block !important;
+  width: 4.75em !important;
+  min-width: 4.75em !important;
+  max-width: 6em !important;
+  height: 32px !important;
+  margin: 0 2px !important;
+  padding: 0 8px !important;
+  box-sizing: border-box !important;
+  vertical-align: middle !important;
+  -moz-appearance: textfield !important;
+}
+
+body.ty-preferences .export-detail input[type="number"]::-webkit-outer-spin-button,
+body.ty-preferences .export-detail input[type="number"]::-webkit-inner-spin-button,
+.export-detail input[type="number"]::-webkit-outer-spin-button,
+.export-detail input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+  height: 0 !important;
+}
+
+/* 页眉/页尾等不要被拉成通栏，与「页面大小」等控件对齐 */
+body.ty-preferences .export-detail select,
+.ty-preferences .export-detail select,
+.export-detail select {
+  display: inline-block !important;
+  width: auto !important;
+  min-width: 10em !important;
+  max-width: 320px !important;
+  box-sizing: border-box !important;
+}
+
+body.ty-preferences .export-detail input[type="text"],
+.ty-preferences .export-detail input[type="text"],
+.export-detail input[type="text"] {
+  display: inline-block !important;
+  width: auto !important;
+  min-width: 12em !important;
+  max-width: 320px !important;
+  box-sizing: border-box !important;
+}
+
+body.ty-preferences .export-detail textarea,
+.ty-preferences .export-detail textarea,
+.export-detail textarea {
+  width: 100% !important;
+  max-width: 100% !important;
+  box-sizing: border-box !important;
+  min-height: 72px !important;
+  padding: 8px 10px !important;
+  border: 1px solid var(--np-border) !important;
+  border-radius: 8px !important;
+  background: var(--np-paper) !important;
+  color: var(--np-ink) !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  resize: vertical !important;
+}
+
+#typora-quick-open {
+  border: 1px solid var(--np-border);
+  border-radius: 12px;
+  box-shadow: var(--np-shadow);
+  padding: 12px;
+}
+
+.typora-quick-open-item.active,
+.typora-quick-open-item:hover {
+  background: var(--np-accent-soft);
+  color: var(--np-accent);
+  border-radius: var(--np-radius-item);
+}
+
+#footer-word-count,
+.footer-item {
+  border-radius: var(--np-radius-item);
+  background: var(--np-bg);
+  line-height: 24px;
+}
+
+#footer-word-count:hover,
+.ty-show-search #footer-word-count {
+  color: var(--np-accent);
+}
+
+.ty-popover,
+.md-image-btn {
+  border-radius: 10px;
+}
+
+/* ---------- tooltip / glass ---------- */
+/* —— 悬停提示：透明玻璃 —— */
+#ty-tooltip,
+.ty-tooltip,
+.ty-tooltip.shown {
+  max-width: min(480px, 80vw);
+  padding: 7px 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
+  border-radius: 10px !important;
+  background: rgba(255, 255, 255, 0.42) !important;
+  color: var(--np-ink) !important;
+  font-family: "MiSans", "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1.45 !important;
+  letter-spacing: 0.01em;
+  backdrop-filter: blur(14px) saturate(1.35) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1.35) !important;
+  box-shadow:
+    0 8px 28px rgba(31, 35, 40, 0.12),
+    0 1px 0 rgba(255, 255, 255, 0.55) inset !important;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+}
+
+.ty-editor-toolbar-tooltip {
+  padding: 5px 10px !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
+  background: rgba(255, 255, 255, 0.42) !important;
+  color: var(--np-ink-soft) !important;
+  font-size: 12px !important;
+  backdrop-filter: blur(14px) saturate(1.35) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(1.35) !important;
+  box-shadow:
+    0 6px 20px rgba(31, 35, 40, 0.1),
+    0 1px 0 rgba(255, 255, 255, 0.55) inset !important;
+}
+
+/* ---------- editor toolbar ---------- */
+/* —— 底部浮动格式工具栏：小圆角、单层边框 —— */
+.ty-editor-toolbar {
+  border-radius: 6px !important;
+  border: 1px solid var(--np-border) !important;
+  background: var(--np-paper) !important;
+  color: var(--np-ink) !important;
+  filter: drop-shadow(0 4px 14px rgba(31, 35, 40, 0.1)) !important;
+  overflow: hidden;
+}
+
+.ty-editor-toolbar-inner {
+  border-radius: 0 !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.ty-editor-toolbar-btn {
+  border-radius: 5px !important;
+  color: var(--np-ink-soft) !important;
+  opacity: 1 !important;
+}
+
+.ty-editor-toolbar-btn:hover,
+.ty-editor-toolbar-btn.hover {
+  background: var(--np-accent-soft) !important;
+  color: var(--np-accent) !important;
+}
+
+.ty-editor-toolbar-btn.active {
+  background: var(--np-accent-soft) !important;
+  color: var(--np-accent) !important;
+}
+
+.ty-editor-toolbar-divider {
+  background: var(--np-border) !important;
+}
+
+.ty-editor-toolbar-select-label {
+  color: var(--np-ink) !important;
+}
+
+.typora-titlebar,
+header.ty-titlebar {
+  background: var(--np-bg) !important;
+}
+
+.titlebar-title {
+  color: var(--np-ink-soft);
+}
+

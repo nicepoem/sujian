@@ -1,0 +1,133 @@
+/* sujian/css/05-blockquote.css — 引用与 GFM Alert */
+
+/* =============================================================
+ * 5. 引用（灰色圆角底；不含 GFM Alert）
+ * ============================================================= */
+#write blockquote:not(.md-alert),
+#write blockquote[mdtype="blockquote"]:not(.md-alert),
+#write [mdtype="blockquote"]:not(.md-alert),
+#write blockquote.md-focus:not(.md-alert),
+blockquote[mdtype="blockquote"]:not(.md-alert) {
+  display: block !important;
+  margin: 1.2em 0 !important;
+  padding: 12px 18px !important;
+  background: #f5f7f9 !important;
+  background-color: #f5f7f9 !important;
+  border: none !important;
+  border-left: none !important;
+  border-radius: 12px !important;
+  color: #57606a !important;
+  font-family: var(--np-serif) !important;
+  box-shadow: none !important;
+}
+
+#write blockquote:not(.md-alert)>p,
+#write blockquote:not(.md-alert) .md-p,
+#write blockquote:not(.md-alert) p.md-end-block,
+#write blockquote:not(.md-alert) p.md-focus {
+  color: #57606a !important;
+  font-family: var(--np-serif) !important;
+  margin: 0.35em 0 !important;
+  padding: 0 !important;
+  background: transparent !important;
+}
+
+#write blockquote:not(.md-alert) .md-plain,
+#write blockquote:not(.md-alert) span[md-inline],
+#write blockquote:not(.md-alert) .md-expand {
+  background: transparent !important;
+}
+
+#write blockquote:not(.md-alert) blockquote {
+  background: #eef1f4 !important;
+  margin-top: 0.6em !important;
+}
+
+/* —— GFM Alert：[!NOTE]/[!TIP]/[!IMPORTANT]/[!WARNING]/[!CAUTION] —— */
+#write blockquote.md-alert,
+#write .md-alert,
+.typora-export blockquote.md-alert,
+.typora-export .md-alert {
+  display: block !important;
+  margin: 1.2em 0 !important;
+  padding: 2px 16px 4px 14px !important;
+  border: none !important;
+  border-radius: 8px !important;
+  /* border-left: 4px solid #8250df !important; */
+  box-shadow: none !important;
+  color: #29323c !important;
+}
+
+#write .md-alert .md-alert-text,
+#write .md-alert .md-alert-text-container,
+#write blockquote.md-alert .md-alert-text {
+  font-weight: 700 !important;
+  font-size: 0.9rem !important;
+  margin-bottom: 0.35em !important;
+  background: transparent !important;
+}
+
+#write .md-alert .md-alert-text svg {
+  fill: currentColor !important;
+}
+
+/* IMPORTANT 重要 */
+#write blockquote.md-alert.md-alert-important,
+#write .md-alert.md-alert-important,
+.typora-export .md-alert.md-alert-important {
+  background: #fbefff !important;
+  background-color: #fbefff !important;
+  border-left-color: #8250df !important;
+}
+
+#write .md-alert-important .md-alert-text,
+#write .md-alert-text-important,
+#write .md-alert.md-alert-important .md-alert-text,
+#write .md-alert.md-alert-important .md-alert-text-container::after {
+  color: #8250df !important;
+}
+
+/* NOTE（中性蓝灰，与主配色红区分；红仅保留给 h2/h3） */
+#write .md-alert.md-alert-note {
+  background: #ddf4ff !important;
+  border-left-color: #0969da !important;
+}
+
+#write .md-alert-note .md-alert-text,
+#write .md-alert-text-note {
+  color: #0969da !important;
+}
+
+/* TIP */
+#write .md-alert.md-alert-tip {
+  background: #dafbe1 !important;
+  border-left-color: #1a7f37 !important;
+}
+
+#write .md-alert-tip .md-alert-text,
+#write .md-alert-text-tip {
+  color: #1a7f37 !important;
+}
+
+/* WARNING */
+#write .md-alert.md-alert-warning {
+  background: #fff8c5 !important;
+  border-left-color: #9a6700 !important;
+}
+
+#write .md-alert-warning .md-alert-text,
+#write .md-alert-text-warning {
+  color: #9a6700 !important;
+}
+
+/* CAUTION（主配色红已收回；此处用墨色语义告警，避免与 h2/h3 抢红） */
+#write .md-alert.md-alert-caution {
+  background: #eaeef2 !important;
+  border-left-color: #29323c !important;
+}
+
+#write .md-alert-caution .md-alert-text,
+#write .md-alert-text-caution {
+  color: #29323c !important;
+}
+
